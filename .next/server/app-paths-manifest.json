@@ -1,11 +1,4 @@
 {
-  "/api/keys/route": "app/api/keys/route.js",
-  "/api/user/route": "app/api/user/route.js",
-  "/api/v1/anime/route": "app/api/v1/anime/route.js",
-  "/api/stripe/webhook/route": "app/api/stripe/webhook/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/stripe/checkout/route": "app/api/stripe/checkout/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
   "/(routes)/upgrade/page": "app/(routes)/upgrade/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",

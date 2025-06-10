@@ -260,6 +260,10 @@ Para que la aplicación reciba notificaciones de eventos de Stripe (como la fina
     -   Si el usuario no tiene una API Key, se le genera una nueva clave API automáticamente con el plan 'pro' y un límite de 150 solicitudes.
 3.  **Para probar webhooks localmente (Stripe CLI):**
     -   Asegúrate de tener la [Stripe CLI](https://stripe.com/docs/stripe-cli) instalada y configurada.
+    -   **Autenticar Stripe CLI:** Primero, inicia sesión en tu cuenta de Stripe desde la CLI:
+        ```bash
+        stripe login
+        ```
     -   Ejecuta el siguiente comando en tu terminal para reenviar eventos de Stripe a tu entorno local:
     ```bash
     stripe listen --forward-to localhost:3000/api/stripe/webhook
