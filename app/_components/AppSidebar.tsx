@@ -86,7 +86,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     </div>
                                     <div className="text-white text-xs mt-1 text-center opacity-80">{requestsCount} / 10</div>
                                 </div>
-                                <Link href="/upgrade" className="bg-white text-violet-700 font-semibold px-3 py-1 rounded-[25px] shadow hover:bg-violet-100 transition text-sm text-center w-full block">Mejorar</Link>
+                                <Link href="/upgrade" className="bg-white text-violet-700 font-semibold px-3 py-1 rounded-[25px] shadow hover:bg-violet-100 transition text-sm">Mejorar</Link>
                             </>
                         ) : (
                             <>

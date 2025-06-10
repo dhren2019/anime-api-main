@@ -3,25 +3,25 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 
 export default function UpgradePage() {
-  const confettiRef = useRef<HTMLDivElement>(null);
+  // const confettiRef = useRef<HTMLDivElement>(null);
 
-  const handleProClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (confettiRef.current) {
-      confettiRef.current.classList.remove('hidden');
-      confettiRef.current.classList.add('block');
-    }
-    setTimeout(() => {
-      window.location.href = '/api/stripe/checkout';
-    }, 1500);
-  };
+  // const handleProClick = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   if (confettiRef.current) {
+  //     confettiRef.current.classList.remove('hidden');
+  //     confettiRef.current.classList.add('block');
+  //   }
+  //   setTimeout(() => {
+  //     window.location.href = '/api/stripe/checkout';
+  //   }, 1500);
+  // };
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-white p-4 py-8">
       {/* Confetti animation */}
-      <div ref={confettiRef} className="hidden fixed inset-0 z-50 pointer-events-none">
+      {/* <div ref={confettiRef} className="hidden fixed inset-0 z-50 pointer-events-none">
         <ConfettiAnimation />
-      </div>
+      </div> */}
       <div className="w-full flex flex-col items-center justify-center">
         <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-900 text-center">Mejora tu experiencia</h1>
         <p className="mb-8 text-gray-500 text-center max-w-xl text-lg font-medium">
@@ -52,7 +52,32 @@ export default function UpgradePage() {
               <li>Soporte prioritario</li>
             </ul>
             <button
-              onClick={handleProClick}
+              onClick={async () => {
+                try {
+                  const response = await fetch('/api/stripe/checkout', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                  const data = await response.json();
+                  if (response.ok && data.url) {
+                    window.location.href = data.url; // Redirige directamente sin animación
+                  } else {
+                    let errorMessage = 'Error desconocido al iniciar el checkout de Stripe.';
+                    try {
+                      const errorData = await response.json();
+                      errorMessage = errorData.error || errorMessage;
+                    } catch {
+                      errorMessage = await response.text();
+                    }
+                    alert(`Error al iniciar el checkout de Stripe: ${errorMessage}`);
+                  }
+                } catch (error: any) {
+                  console.error('Error en la petición a Stripe:', error);
+                  alert(`Error de conexión. Inténtalo de nuevo más tarde. Detalles: ${error.message || error}`);
+                }
+              }}
               className="bg-gradient-to-r from-violet-600 to-blue-500 text-white font-bold px-10 py-3 rounded-full shadow-lg hover:from-violet-700 hover:to-blue-600 transition text-lg mt-2"
             >
               ¡Quiero ser Pro!
@@ -64,34 +89,34 @@ export default function UpgradePage() {
   );
 }
 
-// Componente simple de confeti SVG animado
-function ConfettiAnimation() {
-  return (
-    <svg className="w-full h-full" viewBox="0 0 800 600">
-      <g>
-        {/* Puedes mejorar este SVG o usar una librería real de confeti si lo deseas */}
-        <circle cx="100" cy="100" r="8" fill="#a78bfa">
-          <animate attributeName="cy" from="100" to="600" dur="1.2s" repeatCount="1" />
-        </circle>
-        <circle cx="200" cy="120" r="6" fill="#6366f1">
-          <animate attributeName="cy" from="120" to="600" dur="1.1s" repeatCount="1" />
-        </circle>
-        <circle cx="300" cy="80" r="7" fill="#818cf8">
-          <animate attributeName="cy" from="80" to="600" dur="1.3s" repeatCount="1" />
-        </circle>
-        <circle cx="400" cy="110" r="8" fill="#f472b6">
-          <animate attributeName="cy" from="110" to="600" dur="1.2s" repeatCount="1" />
-        </circle>
-        <circle cx="500" cy="90" r="6" fill="#facc15">
-          <animate attributeName="cy" from="90" to="600" dur="1.1s" repeatCount="1" />
-        </circle>
-        <circle cx="600" cy="130" r="7" fill="#34d399">
-          <animate attributeName="cy" from="130" to="600" dur="1.3s" repeatCount="1" />
-        </circle>
-        <circle cx="700" cy="100" r="8" fill="#60a5fa">
-          <animate attributeName="cy" from="100" to="600" dur="1.2s" repeatCount="1" />
-        </circle>
-      </g>
-    </svg>
-  );
-} 
+// Componente simple de confeti SVG animado (comentado)
+// function ConfettiAnimation() {
+//   return (
+//     <svg className="w-full h-full" viewBox="0 0 800 600">
+//       <g>
+//         {/* Puedes mejorar este SVG o usar una librería real de confeti si lo deseas */}
+//         <circle cx="100" cy="100" r="8" fill="#a78bfa">
+//           <animate attributeName="cy" from="100" to="600" dur="1.2s" repeatCount="1" />
+//         </circle>
+//         <circle cx="200" cy="120" r="6" fill="#6366f1">
+//           <animate attributeName="cy" from="120" to="600" dur="1.1s" repeatCount="1" />
+//         </circle>
+//         <circle cx="300" cy="80" r="7" fill="#818cf8">
+//           <animate attributeName="cy" from="80" to="600" dur="1.3s" repeatCount="1" />
+//         </circle>
+//         <circle cx="400" cy="110" r="8" fill="#f472b6">
+//           <animate attributeName="cy" from="110" to="600" dur="1.2s" repeatCount="1" />
+//         </circle>
+//         <circle cx="500" cy="90" r="6" fill="#facc15">
+//           <animate attributeName="cy" from="90" to="600" dur="1.1s" repeatCount="1" />
+//         </circle>
+//         <circle cx="600" cy="130" r="7" fill="#34d399">
+//           <animate attributeName="cy" from="130" to="600" dur="1.3s" repeatCount="1" />
+//         </circle>
+//         <circle cx="700" cy="100" r="8" fill="#60a5fa">
+//           <animate attributeName="cy" from="100" to="600" dur="1.2s" repeatCount="1" />
+//         </circle>
+//       </g>
+//     </svg>
+//   );
+// } 

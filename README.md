@@ -249,3 +249,43 @@ Puedes buscar por cualquier título parcial o completo usando el parámetro `que
 ## Notas
 - Las API keys solo se muestran completas una vez por seguridad.
 - Si tienes problemas con la autenticación o la API key, revisa la configuración del middleware y las rutas públicas/privadas.
+
+## Configuración de Stripe Webhooks
+Para que la aplicación reciba notificaciones de eventos de Stripe (como la finalización de una compra), se utiliza un webhook.
+
+1.  **Endpoint del Webhook:** El endpoint en tu aplicación es `/api/stripe/webhook`.
+2.  **Manejo de Eventos:** Cuando una sesión de checkout de Stripe se completa (`checkout.session.completed`), este webhook se encarga de:
+    -   Buscar al usuario en la base de datos.
+    -   Si el usuario ya tiene una API Key, su plan se actualiza a 'pro' con un límite de 150 solicitudes.
+    -   Si el usuario no tiene una API Key, se le genera una nueva clave API automáticamente con el plan 'pro' y un límite de 150 solicitudes.
+3.  **Para probar webhooks localmente (Stripe CLI):**
+    -   Asegúrate de tener la [Stripe CLI](https://stripe.com/docs/stripe-cli) instalada y configurada.
+    -   Ejecuta el siguiente comando en tu terminal para reenviar eventos de Stripe a tu entorno local:
+    ```bash
+    stripe listen --forward-to localhost:3000/api/stripe/webhook
+    ```
+    -   La Stripe CLI te proporcionará un `webhook signing secret` (generalmente comienza con `whsec_`). Asegúrate de añadirlo a tu archivo `.env` como `STRIPE_WEBHOOK_SECRET`.
+    ```env
+    STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+    ```
+
+## Limpieza de Cachés
+Si experimentas problemas de compilación o datos desactualizados, puede ser útil limpiar las cachés del proyecto.
+
+1.  **Eliminar cachés de Next.js:**
+    ```bash
+    rm -rf .next
+    ```
+2.  **Eliminar módulos de node y caché de npm/yarn (opcional, para una limpieza profunda):**
+    ```bash
+    rm -rf node_modules
+    rm -f package-lock.json yarn.lock
+    ```
+3.  **Reinstalar dependencias (si eliminaste `node_modules`):**
+    ```bash
+    npm install # o yarn install
+    ```
+4.  **Reiniciar el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
