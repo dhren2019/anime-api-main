@@ -52,11 +52,20 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupContent>
-                        <SidebarMenu className='mt-5'>
+                        <SidebarMenu className='mt-5 flex flex-col gap-2'>
                             {items.map((item, index) => (
-                                <Link href={item.url} key={index} className={`p-2 text-lg flex gap-2 items-center
-                                 hover:bg-gray-100 rounded-lg ${path === item.url ? 'bg-gray-200' : ''}`}>
-                                    <item.icon className='h-5 w-5' />
+                                <Link
+                                    href={item.url}
+                                    key={index}
+                                    className={`flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-150
+                                        text-base font-semibold tracking-tight
+                                        ${path === item.url
+                                            ? 'bg-gradient-to-r from-violet-100 to-blue-100 text-violet-700 shadow-sm'
+                                            : 'text-gray-500 hover:bg-gray-100 hover:text-violet-700'}
+                                    `}
+                                    style={{ letterSpacing: '-0.01em' }}
+                                >
+                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
                                     <span>{item.title}</span>
                                 </Link>
                             ))}

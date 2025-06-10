@@ -1,5 +1,6 @@
 {
   "/api/keys/route": "app/api/keys/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
   "/(routes)/settings/page": "app/(routes)/settings/page.js",
