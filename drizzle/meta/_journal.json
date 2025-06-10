@@ -22,6 +22,13 @@
       "when": 1749540731917,
       "tag": "0002_happy_talon",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1749552899266,
+      "tag": "0003_wet_lenny_balinger",
+      "breakpoints": true
     }
   ]
 }

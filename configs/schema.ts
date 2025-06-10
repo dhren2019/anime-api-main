@@ -11,8 +11,8 @@ export const apiKeysTable = pgTable("api_keys", {
     userId: integer().references(() => usersTable.id).notNull(),
     name: varchar({ length: 255 }).notNull(),
     key: varchar({ length: 255 }).notNull().unique(),
-    lastUsed: timestamp("timestamptz"),
-    createdAt: timestamp("timestamptz").defaultNow().notNull(),
+    lastUsed: timestamp().defaultNow(),
+    createdAt: timestamp().defaultNow().notNull(),
     isActive: boolean().default(true).notNull(),
 });
 

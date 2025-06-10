@@ -38,25 +38,19 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
 ```
 
-4. Inicializar Drizzle:
+4. Comandos de Drizzle:
 ```bash
-npx drizzle-kit generate:pg
-# Este comando generará los archivos de migración en la carpeta drizzle/
+# Generar migraciones
+npx drizzle-kit generate
+
+# Aplicar migraciones
+npx drizzle-kit push
+
+# Iniciar Drizzle Studio (interfaz visual de la base de datos)
+npx drizzle-kit studio
 ```
 
-5. Aplicar las migraciones:
-```bash
-npx drizzle-kit push:pg
-# Este comando aplicará las migraciones a la base de datos
-```
-
-6. Importar los datos de anime:
-```bash
-npm run import-anime
-# Este comando descargará e importará todos los datos de anime
-```
-
-7. Iniciar el servidor de desarrollo:
+5. Iniciar el servidor de desarrollo:
 ```bash
 npm run dev
 ```
