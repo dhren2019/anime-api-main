@@ -16,6 +16,7 @@ export default function AnimeSearchPage() {
   const [apiKey, setApiKey] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [query, setQuery] = useState("");
+  const [type, setType] = useState("");
   const [results, setResults] = useState<Anime[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,10 @@ export default function AnimeSearchPage() {
     setError(null);
     setLoading(true);
     try {
-      const res = await fetch(`/api/v1/anime?query=${encodeURIComponent(query)}`, {
+      const params = new URLSearchParams();
+      if (query) params.append("query", query);
+      if (type) params.append("type", type);
+      const res = await fetch(`/api/v1/anime?${params.toString()}`, {
         headers: { Authorization: `Bearer ${apiKey}` },
       });
       if (!res.ok) throw new Error("Error buscando animes");
@@ -91,6 +95,19 @@ export default function AnimeSearchPage() {
             placeholder="Ej: Naruto"
             required
           />
+          <label className="block mb-2 font-medium">Tipo:</label>
+          <select
+            className="w-full border rounded px-3 py-2 mb-2"
+            value={type}
+            onChange={e => setType(e.target.value)}
+          >
+            <option value="">Todos</option>
+            <option value="TV">Serie</option>
+            <option value="Movie">Película</option>
+            <option value="OVA">OVA</option>
+            <option value="ONA">ONA</option>
+            <option value="Special">Especial</option>
+          </select>
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             type="submit"

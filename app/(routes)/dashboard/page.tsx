@@ -36,6 +36,19 @@ export default function DashboardPage() {
     fetchApiKeys();
   }, []);
 
+  useEffect(() => {
+    const stored = localStorage.getItem('viewedApiKeys');
+    if (stored) {
+      try {
+        setViewedKeys(JSON.parse(stored));
+      } catch {}
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('viewedApiKeys', JSON.stringify(viewedKeys));
+  }, [viewedKeys]);
+
   const handleCreateKey = async () => {
     const name = prompt('Enter a name for your API key:');
     if (!name) return;
@@ -123,7 +136,11 @@ export default function DashboardPage() {
                       className="block mx-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
                       onClick={() => {
                         setShowKeyPopupId(null);
-                        setViewedKeys(v => ({ ...v, [key.id]: true }));
+                        setViewedKeys(v => {
+                          const updated = { ...v, [key.id]: true };
+                          localStorage.setItem('viewedApiKeys', JSON.stringify(updated));
+                          return updated;
+                        });
                       }}
                     >Cerrar</button>
                   </div>

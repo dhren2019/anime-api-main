@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { db } from '@/configs/db';
 import { apiKeysTable, animesTable } from '@/configs/schema';
-import { eq, ilike } from 'drizzle-orm';
+import { eq, ilike, and } from 'drizzle-orm';
 
 // Middleware para validar API Key
 async function validateApiKey(apiKey: string) {
@@ -23,13 +23,18 @@ export async function GET(req: Request) {
       return new NextResponse('Invalid API key', { status: 401 });
     }
 
-    // Parámetro de búsqueda por título
+    // Parámetro de búsqueda por título y tipo
     const { searchParams } = new URL(req.url);
     const query = searchParams.get('query') || '';
+    const type = searchParams.get('type') || '';
 
     let animes = [];
-    if (query) {
+    if (query && type) {
+      animes = await db.select().from(animesTable).where(and(ilike(animesTable.title, `%${query}%`), eq(animesTable.type, type)));
+    } else if (query) {
       animes = await db.select().from(animesTable).where(ilike(animesTable.title, `%${query}%`));
+    } else if (type) {
+      animes = await db.select().from(animesTable).where(eq(animesTable.type, type));
     } else {
       animes = await db.select().from(animesTable).limit(10);
     }
