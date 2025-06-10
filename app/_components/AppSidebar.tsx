@@ -8,7 +8,7 @@ import {
     SidebarHeader,
     SidebarMenu,
 } from "@/components/ui/sidebar"
-import { Key, Settings } from "lucide-react"
+import { Key, Settings, Search } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -22,7 +22,7 @@ const items = [
     {
         title: "Buscar Anime",
         url: "/search",
-        icon: Key,
+        icon: Search,
     },
     {
         title: "Settings",
@@ -86,7 +86,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     </div>
                                     <div className="text-white text-xs mt-1 text-center opacity-80">{requestsCount} / 10</div>
                                 </div>
-                                <button className="bg-white text-violet-700 font-semibold px-3 py-1 rounded-[25px] shadow hover:bg-violet-100 transition text-sm">Mejorar</button>
+                                <Link href="/upgrade" className="bg-white text-violet-700 font-semibold px-3 py-1 rounded-[25px] shadow hover:bg-violet-100 transition text-sm text-center w-full block">Mejorar</Link>
                             </>
                         ) : (
                             <>

@@ -21,6 +21,10 @@
         "app/(routes)/search/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
+        },
+        "app/(routes)/upgrade/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
         }
       },
       "layer": {
@@ -28,7 +32,8 @@
         "app/page": "rsc",
         "app/_not-found/page": "rsc",
         "app/(routes)/settings/page": "rsc",
-        "app/(routes)/search/page": "rsc"
+        "app/(routes)/search/page": "rsc",
+        "app/(routes)/upgrade/page": "rsc"
       }
     },
     "7f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24": {
@@ -52,6 +57,10 @@
         "app/(routes)/search/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
+        },
+        "app/(routes)/upgrade/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
         }
       },
       "layer": {
@@ -59,7 +68,8 @@
         "app/page": "rsc",
         "app/_not-found/page": "rsc",
         "app/(routes)/settings/page": "rsc",
-        "app/(routes)/search/page": "rsc"
+        "app/(routes)/search/page": "rsc",
+        "app/(routes)/upgrade/page": "rsc"
       }
     },
     "7f7d590b9adb27061d372fe69f04f4963298d16893": {
@@ -83,6 +93,10 @@
         "app/(routes)/search/page": {
           "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
           "async": false
+        },
+        "app/(routes)/upgrade/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fkeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f0557c54f87381bf137e5f8d6a7f9cffe797d25d3%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%2C%7B%22id%22%3A%227f156334dfd34bec49d0bed8bc3c8e8a6b39e5bc24%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f7d590b9adb27061d372fe69f04f4963298d16893%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
         }
       },
       "layer": {
@@ -90,7 +104,8 @@
         "app/page": "rsc",
         "app/_not-found/page": "rsc",
         "app/(routes)/settings/page": "rsc",
-        "app/(routes)/search/page": "rsc"
+        "app/(routes)/search/page": "rsc",
+        "app/(routes)/upgrade/page": "rsc"
       }
     },
     "7fd19338daf64c29984d6520a5398df60917afe2a5": {
@@ -114,6 +129,10 @@
         "app/(routes)/search/page": {
           "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227fd19338daf64c29984d6520a5398df60917afe2a5%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
           "async": false
+        },
+        "app/(routes)/upgrade/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frodrigoglodosindo%2FDesktop%2Fanime-api-main%2Fnode_modules%2F%40clerk%2Fnextjs%2Fdist%2Fesm%2Fapp-router%2Fserver-actions.js%22%2C%5B%7B%22id%22%3A%227fd19338daf64c29984d6520a5398df60917afe2a5%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
         }
       },
       "layer": {
@@ -121,7 +140,8 @@
         "app/page": "action-browser",
         "app/_not-found/page": "action-browser",
         "app/(routes)/settings/page": "action-browser",
-        "app/(routes)/search/page": "action-browser"
+        "app/(routes)/search/page": "action-browser",
+        "app/(routes)/upgrade/page": "action-browser"
       }
     }
   },

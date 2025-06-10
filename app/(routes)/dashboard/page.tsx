@@ -80,26 +80,26 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-8">
+    <div className="p-4 sm:p-8 max-w-5xl mx-auto w-full">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold mb-2">API Keys</h1>
-          <p className="text-gray-600">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2">API Keys</h1>
+          <p className="text-gray-600 text-sm sm:text-base">
             Your secret API keys are listed below. Please note that we do not display your secret API keys again after you generate them.
           </p>
         </div>
-        <Button onClick={handleCreateKey} className="flex items-center gap-2">
+        <Button onClick={handleCreateKey} className="flex items-center gap-2 w-full sm:w-auto">
           <Plus className="w-4 h-4" />
           Create new secret key
         </Button>
       </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <div className="grid grid-cols-5 gap-4 p-4 border-b font-medium text-sm text-gray-500">
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 p-4 border-b font-medium text-xs sm:text-sm text-gray-500">
           <div>NAME</div>
           <div>KEY</div>
-          <div>CREATED</div>
-          <div>LAST USED</div>
+          <div className="hidden sm:block">CREATED</div>
+          <div className="hidden sm:block">LAST USED</div>
           <div>ACTIONS</div>
         </div>
 
@@ -109,9 +109,9 @@ export default function DashboardPage() {
           </div>
         ) : (
           apiKeys.map((key) => (
-            <div key={key.id} className="grid grid-cols-5 gap-4 p-4 border-b items-center hover:bg-gray-50">
-              <div className="font-medium">{key.name}</div>
-              <div className="font-mono text-sm max-w-[180px] truncate flex items-center gap-2 select-none">
+            <div key={key.id} className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 p-4 border-b items-center hover:bg-gray-50 text-xs sm:text-sm">
+              <div className="font-medium break-words">{key.name}</div>
+              <div className="font-mono text-xs max-w-[180px] truncate flex items-center gap-2 select-none">
                 {key.key.slice(0, 8)}...{key.key.slice(-6)}
                 {!viewedKeys[key.id] && (
                   <button
@@ -122,6 +122,46 @@ export default function DashboardPage() {
                     <Eye className="w-4 h-4" />
                   </button>
                 )}
+              </div>
+              <div className="hidden sm:block text-sm text-gray-500">
+                {new Date(key.createdAt).toLocaleDateString()}
+              </div>
+              <div className="hidden sm:block text-sm text-gray-500">{key.lastUsed}</div>
+              <div className="flex gap-2 flex-wrap">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => copyToClipboard(key.key)}
+                  className="flex items-center gap-1"
+                >
+                  <Copy className="w-4 h-4" />
+                  Copy
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={async () => {
+                    if (!confirm('Are you sure you want to delete this API key? This action cannot be undone.')) return;
+                    try {
+                      const response = await fetch('/api/keys', {
+                        method: 'DELETE',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ id: key.id }),
+                      });
+                      if (!response.ok) throw new Error('Failed to delete API key');
+                      setApiKeys(apiKeys.filter((k) => k.id !== key.id));
+                    } catch (error) {
+                      console.error('Error deleting API key:', error);
+                      alert('Failed to delete API key. Please try again.');
+                    }
+                  }}
+                  className="flex items-center gap-1 text-red-600 hover:text-red-700"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Delete
+                </Button>
               </div>
               {showKeyPopupId === key.id && !viewedKeys[key.id] && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
@@ -149,48 +189,6 @@ export default function DashboardPage() {
                   </div>
                 </div>
               )}
-              <div className="text-sm text-gray-500">
-                {new Date(key.createdAt).toLocaleDateString()}
-              </div>
-              <div className="text-sm text-gray-500">{key.lastUsed}</div>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => copyToClipboard(key.key)}
-                  className="flex items-center gap-1"
-                >
-                  <Copy className="w-4 h-4" />
-                  Copy
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={async () => {
-                    if (!confirm('Are you sure you want to delete this API key? This action cannot be undone.')) return;
-                    
-                    try {
-                      const response = await fetch('/api/keys', {
-                        method: 'DELETE',
-                        headers: {
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ id: key.id }),
-                      });
-                      
-                      if (!response.ok) throw new Error('Failed to delete API key');
-                      setApiKeys(apiKeys.filter((k) => k.id !== key.id));
-                    } catch (error) {
-                      console.error('Error deleting API key:', error);
-                      alert('Failed to delete API key. Please try again.');
-                    }
-                  }}
-                  className="flex items-center gap-1 text-red-600 hover:text-red-700"
-                >
-                  <Trash2 className="w-4 h-4" />
-                  Delete
-                </Button>
-              </div>
             </div>
           ))
         )}
@@ -198,11 +196,11 @@ export default function DashboardPage() {
 
       <div className="mt-8 p-4 bg-gray-50 rounded-lg">
         <h2 className="text-lg font-semibold mb-2">API Documentation</h2>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 mb-4 text-xs sm:text-base">
           To use the Anime API, include your API key in the headers of your requests:
         </p>
-        <div className="bg-gray-900 text-white p-4 rounded font-mono text-sm">
-          curl https://api.animeplatform.com/v1/anime \<br />
+        <div className="bg-gray-900 text-white p-4 rounded font-mono text-xs sm:text-sm">
+          curl https://api.animeplatform.com/v1/anime <br />
           &nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY"
         </div>
       </div>

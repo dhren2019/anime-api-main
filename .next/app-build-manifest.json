@@ -46,10 +46,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/v1/anime/route.js"
     ],
-    "/_not-found/page": [
+    "/(routes)/upgrade/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/(routes)/upgrade/page.js"
     ]
   }
 }
