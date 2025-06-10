@@ -1,0 +1,110 @@
+{
+  "node": {
+    "7f5c210369a9076df78e75a53369109abd72d20fd4": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-in/[[...sign-in]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-up/[[...sign-up]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(routes)/dashboard/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/(auth)/sign-in/[[...sign-in]]/page": "rsc",
+        "app/(auth)/sign-up/[[...sign-up]]/page": "rsc",
+        "app/(routes)/dashboard/page": "rsc"
+      }
+    },
+    "7f5d0ef08cce9c2b7ddba093a4a72143ab09728007": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-in/[[...sign-in]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-up/[[...sign-up]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(routes)/dashboard/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/(auth)/sign-in/[[...sign-in]]/page": "rsc",
+        "app/(auth)/sign-up/[[...sign-up]]/page": "rsc",
+        "app/(routes)/dashboard/page": "rsc"
+      }
+    },
+    "7fd2143a5c4990df1de5f88867006048f04c749b36": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-in/[[...sign-in]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(auth)/sign-up/[[...sign-up]]/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        },
+        "app/(routes)/dashboard/page": {
+          "moduleId": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Ckeyless-actions.js%22%2C%5B%7B%22id%22%3A%227f5c210369a9076df78e75a53369109abd72d20fd4%22%2C%22exportedName%22%3A%22syncKeylessConfigAction%22%7D%2C%7B%22id%22%3A%227f5d0ef08cce9c2b7ddba093a4a72143ab09728007%22%2C%22exportedName%22%3A%22deleteKeylessAction%22%7D%2C%7B%22id%22%3A%227fd2143a5c4990df1de5f88867006048f04c749b36%22%2C%22exportedName%22%3A%22createOrReadKeylessAction%22%7D%5D%5D%5D&__client_imported__=!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/(auth)/sign-in/[[...sign-in]]/page": "rsc",
+        "app/(auth)/sign-up/[[...sign-up]]/page": "rsc",
+        "app/(routes)/dashboard/page": "rsc"
+      }
+    },
+    "7ffe3eb365ffdb7068fd0701f3123f17275e4b78cf": {
+      "workers": {
+        "app/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%7B%22id%22%3A%227ffe3eb365ffdb7068fd0701f3123f17275e4b78cf%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        },
+        "app/(auth)/sign-in/[[...sign-in]]/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%7B%22id%22%3A%227ffe3eb365ffdb7068fd0701f3123f17275e4b78cf%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        },
+        "app/(auth)/sign-up/[[...sign-up]]/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%7B%22id%22%3A%227ffe3eb365ffdb7068fd0701f3123f17275e4b78cf%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        },
+        "app/(routes)/dashboard/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CRODRIGO%5C%5CDesktop%5C%5Canime-api-main%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%7B%22id%22%3A%227ffe3eb365ffdb7068fd0701f3123f17275e4b78cf%22%2C%22exportedName%22%3A%22invalidateCacheAction%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/page": "action-browser",
+        "app/(auth)/sign-in/[[...sign-in]]/page": "action-browser",
+        "app/(auth)/sign-up/[[...sign-up]]/page": "action-browser",
+        "app/(routes)/dashboard/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "J2Y3UyCinfrY9Q+cqOQR/KXJoIjHXuYZ8Amxo9N08V4="
+}

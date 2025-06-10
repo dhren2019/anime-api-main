@@ -15,6 +15,13 @@
       "when": 1749494933988,
       "tag": "0001_spotty_nextwave",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1749540731917,
+      "tag": "0002_happy_talon",
+      "breakpoints": true
     }
   ]
 }
