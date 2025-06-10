@@ -720,9 +720,6 @@ video {
 .min-h-0 {
   min-height: 0px;
 }
-.min-h-screen {
-  min-height: 100vh;
-}
 .min-h-svh {
   min-height: 100svh;
 }
