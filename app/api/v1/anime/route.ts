@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { db } from '@/configs/db';
 import { apiKeysTable, animesTable } from '@/configs/schema';
-import { eq, and, sql } from 'drizzle-orm';
+import { eq, ilike } from 'drizzle-orm';
 
 // Middleware para validar API Key
 async function validateApiKey(apiKey: string) {
@@ -23,47 +23,21 @@ export async function GET(req: Request) {
       return new NextResponse('Invalid API key', { status: 401 });
     }
 
-    // Parámetros de consulta
+    // Parámetro de búsqueda por título
     const { searchParams } = new URL(req.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
-    const search = searchParams.get('search') || '';
-    const type = searchParams.get('type') || '';
-    const offset = (page - 1) * limit;
+    const query = searchParams.get('query') || '';
 
-    // Filtros SQL nativo
-    let whereSql = sql``;
-    if (search && type) {
-      whereSql = sql`WHERE ${animesTable.title} ILIKE ${'%' + search + '%'} AND ${animesTable.type} = ${type}`;
-    } else if (search) {
-      whereSql = sql`WHERE ${animesTable.title} ILIKE ${'%' + search + '%'}`;
-    } else if (type) {
-      whereSql = sql`WHERE ${animesTable.type} = ${type}`;
+    let animes = [];
+    if (query) {
+      animes = await db.select().from(animesTable).where(ilike(animesTable.title, `%${query}%`));
+    } else {
+      animes = await db.select().from(animesTable).limit(10);
     }
-
-    // Consulta de datos
-    const animes = await db.execute(
-      sql`SELECT * FROM ${animesTable} ${whereSql} LIMIT ${limit} OFFSET ${offset}`
-    );
-
-    // Conteo total
-    const totalResult = await db.execute(
-      sql`SELECT COUNT(*)::int AS count FROM ${animesTable} ${whereSql}`
-    );
-    const total = Number(totalResult.rows?.[0]?.count || 0);
 
     // Actualizar lastUsed
     await db.update(apiKeysTable).set({ lastUsed: new Date() }).where(eq(apiKeysTable.key, apiKey));
 
-    return NextResponse.json({
-      data: animes.rows,
-      pagination: {
-        page,
-        limit,
-        total,
-        pages: Math.ceil(total / limit)
-      }
-    });
+    return NextResponse.json({ animes });
   } catch (error) {
     console.error('Error fetching anime data:', error);
     return new NextResponse('Internal Server Error', { status: 500 });

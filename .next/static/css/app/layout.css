@@ -663,6 +663,12 @@ video {
 .ml-1 {
   margin-left: 0.25rem;
 }
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .block {
   display: block;
 }
@@ -771,6 +777,9 @@ video {
 .w-\[400px\] {
   width: 400px;
 }
+.w-12 {
+  width: 3rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -797,6 +806,9 @@ video {
 }
 .max-w-\[90vw\] {
   max-width: 90vw;
+}
+.max-w-xl {
+  max-width: 36rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1023,6 +1035,9 @@ video {
 }
 .bg-clip-text {
   background-clip: text;
+}
+.object-cover {
+  object-fit: cover;
 }
 .p-0 {
   padding: 0px;

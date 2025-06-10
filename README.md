@@ -183,3 +183,69 @@ Las contribuciones son bienvenidas. Por favor, asegúrate de:
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## Funcionalidades principales
+- Autenticación con Clerk (sign-in/sign-up)
+- Generación y gestión de API keys personales
+- Búsqueda de animes en la base de datos usando API key
+- Panel de usuario y ajustes de cuenta
+
+## Uso de la API Key
+1. Inicia sesión y genera una API key desde el dashboard.
+2. Usa tu API key para acceder a los endpoints protegidos.
+
+### Endpoint de búsqueda de anime
+
+**GET** `/api/v1/anime?query=naruto`
+
+**Headers:**
+```
+Authorization: Bearer TU_API_KEY
+```
+
+**Respuesta:**
+```json
+{
+  "animes": [
+    {
+      "id": 1,
+      "title": "Naruto",
+      "type": "TV",
+      "episodes": 220,
+      "status": "Finished",
+      "animeSeason": "Spring 2002",
+      "picture": "https://cdn.myanimelist.net/images/anime/13/17405.jpg",
+      "thumbnail": "https://cdn.myanimelist.net/images/anime/13/17405t.jpg"
+    },
+    ...
+  ]
+}
+```
+
+Puedes buscar por cualquier título parcial o completo usando el parámetro `query`.
+
+### Ejemplo de uso en Postman
+1. Selecciona método **GET**
+2. URL: `http://localhost:3000/api/v1/anime?query=naruto`
+3. En la pestaña Headers, añade:
+   - Key: `Authorization`
+   - Value: `Bearer TU_API_KEY`
+4. Haz la solicitud y verás los resultados en formato JSON.
+
+---
+
+## Página de búsqueda de anime (`/search`)
+- Accesible desde el sidebar debajo de "Generate API Key".
+- El usuario debe ingresar su API key para acceder.
+- Permite buscar animes por título y muestra los resultados con imagen, título y tipo/estado.
+
+---
+
+## Ajustes de cuenta
+- En la página `/settings` puedes gestionar tu cuenta Clerk (email, contraseña, etc.)
+
+---
+
+## Notas
+- Las API keys solo se muestran completas una vez por seguridad.
+- Si tienes problemas con la autenticación o la API key, revisa la configuración del middleware y las rutas públicas/privadas.

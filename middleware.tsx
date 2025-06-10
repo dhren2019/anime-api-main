@@ -1,22 +1,24 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const isPublicRoute = createRouteMatcher([
-    '/sign-in(.*)',
-    '/sign-up(.*)',
-    '/'
-])
+const openApiRoutes = [
+  "/api/v1/anime",
+  "/api/v1/anime/"
+];
 
-export default clerkMiddleware(async (auth, req) => {
-    if (!isPublicRoute(req)) {
-        await auth.protect()
-    }
-})
+export default clerkMiddleware((auth, req: NextRequest) => {
+  const { pathname } = req.nextUrl;
+  if (pathname === "/api/v1/anime" || pathname.startsWith("/api/v1/anime/")) {
+    return NextResponse.next();
+  }
+  // Clerk protegerá el resto automáticamente
+  return NextResponse.next();
+});
 
 export const config = {
-    matcher: [
-        // Skip Next.js internals and all static files, unless found in search params
-        '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-        // Always run for API routes
-        '/(api|trpc)(.*)',
-    ],
-}
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/(api|trpc)(.*)"
+  ]
+};

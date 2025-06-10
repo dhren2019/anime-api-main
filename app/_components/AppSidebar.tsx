@@ -20,6 +20,11 @@ const items = [
         icon: Key,
     },
     {
+        title: "Buscar Anime",
+        url: "/search",
+        icon: Key,
+    },
+    {
         title: "Settings",
         url: "/settings",
         icon: Settings,
