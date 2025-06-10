@@ -31,6 +31,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/keys/route.js"
     ],
+    "/(routes)/settings/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/settings/page.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

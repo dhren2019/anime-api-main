@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Copy, Plus, Trash2 } from 'lucide-react';
+import { Copy, Plus, Trash2, Eye } from 'lucide-react';
 
 interface ApiKey {
   id: number;
@@ -15,6 +15,8 @@ interface ApiKey {
 export default function DashboardPage() {
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showKeyPopupId, setShowKeyPopupId] = useState<number | null>(null);
+  const [viewedKeys, setViewedKeys] = useState<{ [id: number]: boolean }>({});
 
   useEffect(() => {
     const fetchApiKeys = async () => {
@@ -93,7 +95,40 @@ export default function DashboardPage() {
           apiKeys.map((key) => (
             <div key={key.id} className="grid grid-cols-5 gap-4 p-4 border-b items-center hover:bg-gray-50">
               <div className="font-medium">{key.name}</div>
-              <div className="font-mono text-sm">{key.key}</div>
+              <div className="font-mono text-sm max-w-[180px] truncate flex items-center gap-2 select-none">
+                {key.key.slice(0, 8)}...{key.key.slice(-6)}
+                {!viewedKeys[key.id] && (
+                  <button
+                    className="ml-1 p-1 hover:bg-gray-200 rounded"
+                    title="Show API key"
+                    onClick={() => setShowKeyPopupId(key.id)}
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+              {showKeyPopupId === key.id && !viewedKeys[key.id] && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
+                  <div className="bg-white p-6 rounded shadow-lg max-w-[90vw] w-[400px] relative">
+                    <h2 className="font-bold mb-2 text-center">API Key</h2>
+                    <textarea
+                      className="w-full text-xs font-mono p-2 border rounded bg-gray-100 mb-2"
+                      value={key.key}
+                      readOnly
+                      autoFocus
+                      onClick={e => (e.target as HTMLTextAreaElement).select()}
+                    />
+                    <div className="text-xs text-red-600 text-center mb-2">Por seguridad, esta clave solo se mostrará una vez. ¡Cópiala y guárdala!</div>
+                    <button
+                      className="block mx-auto bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                      onClick={() => {
+                        setShowKeyPopupId(null);
+                        setViewedKeys(v => ({ ...v, [key.id]: true }));
+                      }}
+                    >Cerrar</button>
+                  </div>
+                </div>
+              )}
               <div className="text-sm text-gray-500">
                 {new Date(key.createdAt).toLocaleDateString()}
               </div>
