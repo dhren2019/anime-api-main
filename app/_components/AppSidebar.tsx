@@ -31,7 +31,14 @@ const items = [
     },
 ]
 
-export function AppSidebar() {
+// Añadir props para el uso de la API key principal
+interface SidebarUpgradeProps {
+  requestsCount?: number;
+  requestsLimit?: number;
+  plan?: string;
+}
+
+export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free' }: SidebarUpgradeProps) {
     const path = usePathname();
     return (
         <Sidebar>
@@ -58,7 +65,33 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                <h2 className='p-2 text-gray-400 text-sm'>Anime API Platform</h2>
+                <div className="w-full px-3 pb-3">
+                    <div className="bg-gradient-to-r from-violet-600 via-blue-500 to-indigo-400 rounded-xl p-4 flex flex-col items-center shadow-lg">
+                        {plan === 'free' ? (
+                            <>
+                                <span className="text-white font-bold text-lg mb-2">Upgrade to pro</span>
+                                <span className="text-white text-xs mb-3 text-center opacity-80">Desbloquea 150 peticiones al mes y soporte premium</span>
+                                <div className="w-full mb-3">
+                                    <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
+                                        <div className="h-2 bg-white rounded-full transition-all" style={{ width: `${Math.min(100, Math.round((requestsCount / 10) * 100))}%` }}></div>
+                                    </div>
+                                    <div className="text-white text-xs mt-1 text-center opacity-80">{requestsCount} / 10</div>
+                                </div>
+                                <button className="bg-white text-violet-700 font-semibold px-3 py-1 rounded-[25px] shadow hover:bg-violet-100 transition text-sm">Mejorar</button>
+                            </>
+                        ) : (
+                            <>
+                                <span className="text-white font-bold text-lg mb-2">API usage</span>
+                                <div className="w-full mb-3">
+                                    <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
+                                        <div className="h-2 bg-white rounded-full transition-all" style={{ width: `${Math.min(100, Math.round((requestsCount / 150) * 100))}%` }}></div>
+                                    </div>
+                                    <div className="text-white text-xs mt-1 text-center opacity-80">{requestsCount} / 150</div>
+                                </div>
+                            </>
+                        )}
+                    </div>
+                </div>
             </SidebarFooter>
         </Sidebar>
     )

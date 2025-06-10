@@ -19,7 +19,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { name } = await req.json();
+    const { name, plan } = await req.json();
+    // plan puede ser 'free' o 'pro', por defecto 'free'
+    const planType = plan === 'pro' ? 'pro' : 'free';
+    const requestsLimit = planType === 'pro' ? 150 : 10;
     
     // Get the user from our database
     const dbUser = await db
@@ -38,7 +41,10 @@ export async function POST(req: Request) {
       name,
       key,
       createdAt: new Date(),
-      isActive: true
+      isActive: true,
+      plan: planType,
+      requestsLimit,
+      requestsCount: 0
     }).returning();
 
     return NextResponse.json({ success: true, key: apiKey[0] });

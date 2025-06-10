@@ -1,4 +1,4 @@
-// File: C:\Users\RODRIGO\Desktop\anime-api-main\app\api\user\route.tsx
+// File: /Users/rodrigoglodosindo/Desktop/anime-api-main/app/api/user/route.tsx
 import * as entry from '../../../../../app/api/user/route.js'
 import type { NextRequest } from 'next/server.js'
 

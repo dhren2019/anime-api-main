@@ -1,4 +1,4 @@
-// File: C:\Users\RODRIGO\Desktop\anime-api-main\app\(routes)\search\page.tsx
+// File: /Users/rodrigoglodosindo/Desktop/anime-api-main/app/(routes)/search/page.tsx
 import * as entry from '../../../../../app/(routes)/search/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

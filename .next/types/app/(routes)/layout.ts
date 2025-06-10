@@ -1,4 +1,4 @@
-// File: C:\Users\RODRIGO\Desktop\anime-api-main\app\(routes)\layout.tsx
+// File: /Users/rodrigoglodosindo/Desktop/anime-api-main/app/(routes)/layout.tsx
 import * as entry from '../../../../app/(routes)/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

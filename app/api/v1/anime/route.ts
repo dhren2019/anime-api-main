@@ -18,10 +18,22 @@ export async function GET(req: Request) {
       return new NextResponse('API key required', { status: 401 });
     }
     const apiKey = authorization.split(' ')[1];
-    const isValidKey = await validateApiKey(apiKey);
-    if (!isValidKey) {
+    // Obtener la key completa para acceder a plan y contador
+    const keyDataArr = await db.select().from(apiKeysTable).where(eq(apiKeysTable.key, apiKey)).limit(1);
+    if (!keyDataArr.length) {
       return new NextResponse('Invalid API key', { status: 401 });
     }
+    const keyData = keyDataArr[0];
+    // Lógica de límites
+    let limit = 10;
+    if (keyData.plan === 'pro') limit = 150;
+    if (keyData.requestsCount >= limit) {
+      return new NextResponse('Upgrade to pro', { status: 429 });
+    }
+    // Incrementar contador
+    await db.update(apiKeysTable)
+      .set({ lastUsed: new Date(), requestsCount: keyData.requestsCount + 1 })
+      .where(eq(apiKeysTable.key, apiKey));
 
     // Parámetro de búsqueda por título y tipo
     const { searchParams } = new URL(req.url);
@@ -38,9 +50,6 @@ export async function GET(req: Request) {
     } else {
       animes = await db.select().from(animesTable).limit(10);
     }
-
-    // Actualizar lastUsed
-    await db.update(apiKeysTable).set({ lastUsed: new Date() }).where(eq(apiKeysTable.key, apiKey));
 
     return NextResponse.json({ animes });
   } catch (error) {

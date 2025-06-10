@@ -14,6 +14,9 @@ export const apiKeysTable = pgTable("api_keys", {
     lastUsed: timestamp().defaultNow(),
     createdAt: timestamp().defaultNow().notNull(),
     isActive: boolean().default(true).notNull(),
+    plan: varchar({ length: 20 }).default('free').notNull(), // free o pro
+    requestsCount: integer().default(0).notNull(),
+    requestsLimit: integer().default(10).notNull(),
 });
 
 export const animesTable = pgTable("animes", {

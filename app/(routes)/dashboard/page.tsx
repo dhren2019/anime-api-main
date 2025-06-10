@@ -10,6 +10,9 @@ interface ApiKey {
   key: string;
   lastUsed: string;
   createdAt: string;
+  plan?: string;
+  requestsCount?: number;
+  requestsLimit?: number;
 }
 
 export default function DashboardPage() {

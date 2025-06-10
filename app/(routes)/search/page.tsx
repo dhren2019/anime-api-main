@@ -20,6 +20,7 @@ export default function AnimeSearchPage() {
   const [results, setResults] = useState<Anime[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showUpgrade, setShowUpgrade] = useState(false);
 
   const validateKey = async () => {
     setError(null);
@@ -52,6 +53,14 @@ export default function AnimeSearchPage() {
       const res = await fetch(`/api/v1/anime?${params.toString()}`, {
         headers: { Authorization: `Bearer ${apiKey}` },
       });
+      if (res.status === 429) {
+        const text = await res.text();
+        if (text === 'Upgrade to pro') {
+          setShowUpgrade(true);
+          setLoading(false);
+          return;
+        }
+      }
       if (!res.ok) throw new Error("Error buscando animes");
       const data = await res.json();
       setResults(data.animes || []);
@@ -134,6 +143,18 @@ export default function AnimeSearchPage() {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+      {showUpgrade && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
+          <div className="bg-white p-6 rounded shadow-lg max-w-[90vw] w-[400px] relative text-center">
+            <h2 className="font-bold mb-2 text-xl">¡Límite alcanzado!</h2>
+            <p className="mb-4">Has alcanzado el límite de peticiones de tu plan gratuito.<br/>Actualiza a <b>Pro</b> para seguir usando la API.</p>
+            <button
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              onClick={() => setShowUpgrade(false)}
+            >Cerrar</button>
+          </div>
         </div>
       )}
     </div>
