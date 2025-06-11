@@ -293,3 +293,73 @@ Si experimentas problemas de compilación o datos desactualizados, puede ser út
     ```bash
     npm run dev
     ```
+
+## Despliegue en Producción
+
+### 1. Prepara las variables de entorno
+Asegúrate de tener un archivo `.env` con las siguientes variables configuradas para producción:
+
+```
+NEXT_PUBLIC_NEON_DB_CONNECTION_STRING=tu_cadena_de_conexion_produccion
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=tu_clerk_publishable_key
+CLERK_SECRET_KEY=tu_clerk_secret_key
+STRIPE_SECRET_KEY=tu_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=tu_stripe_webhook_secret
+NEXT_PUBLIC_BASE_URL=https://tudominio.com
+```
+
+- Cambia los valores por los de tu entorno real (Neon, Clerk, Stripe, etc).
+- `NEXT_PUBLIC_BASE_URL` debe ser la URL pública de tu app (por ejemplo, `https://animeapi.dev`).
+
+### 2. Configura la base de datos
+- Asegúrate de que tu base de datos (por ejemplo, Neon.tech o PostgreSQL en la nube) esté accesible desde el entorno de producción.
+- Aplica todas las migraciones:
+  ```bash
+  npx drizzle-kit push
+  ```
+- Si necesitas importar datos de anime:
+  ```bash
+  npm run import-anime
+  ```
+
+### 3. Configura Clerk y Stripe
+- En Clerk, añade tu dominio de producción en el dashboard de Clerk (para permitir el login desde tu dominio).
+- En Stripe, configura los webhooks para que apunten a `https://tudominio.com/api/stripe/webhook`.
+- Añade las claves secretas de Clerk y Stripe en las variables de entorno.
+
+### 4. Build de la app para producción
+- Ejecuta:
+  ```bash
+  npm run build
+  ```
+- Esto generará la carpeta `.next` lista para producción.
+
+### 5. Inicia la app en modo producción
+- Ejecuta:
+  ```bash
+  npm run start
+  ```
+- Por defecto, Next.js usará el puerto 3000. Puedes cambiarlo con la variable de entorno `PORT`.
+
+### 6. Hosting recomendado
+Puedes desplegar la app en:
+- **Vercel** (recomendado para Next.js, integración directa, fácil despliegue y variables de entorno desde el dashboard)
+- **Railway**, **Render**, **Heroku** o cualquier VPS con Node.js 18+
+- Si usas Vercel:
+  - Sube el proyecto a GitHub.
+  - Conecta el repo en Vercel y configura las variables de entorno en el dashboard.
+  - Vercel se encarga del build y el despliegue automático.
+
+### 7. Archivos públicos y SEO
+- Asegúrate de que las imágenes importantes (favicon, Open Graph, etc.) estén en la carpeta `public`.
+- Revisa que el dominio esté bien configurado en Clerk y Stripe.
+
+### 8. Seguridad y comprobaciones finales
+- Usa HTTPS en producción.
+- Revisa los logs de la app y de la base de datos.
+- Prueba el flujo de registro, login, generación de API key y endpoints protegidos.
+- Prueba el webhook de Stripe (puedes usar Stripe CLI para simular eventos).
+
+---
+
+Si tienes dudas sobre el despliegue en un proveedor específico, consulta la documentación oficial de Next.js o pregunta en la comunidad.

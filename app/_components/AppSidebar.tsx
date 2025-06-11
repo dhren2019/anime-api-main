@@ -8,7 +8,7 @@ import {
     SidebarHeader,
     SidebarMenu,
 } from "@/components/ui/sidebar"
-import { Key, Settings, Search } from "lucide-react"
+import { Key, Settings, Search, Code } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -23,6 +23,11 @@ const items = [
         title: "Buscar Anime",
         url: "/search",
         icon: Search,
+    },
+    {
+        title: "Snippets",
+        url: "/snippets",
+        icon: Code,
     },
     {
         title: "Settings",
