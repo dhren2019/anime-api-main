@@ -111,13 +111,16 @@ export default function DashboardPage() {
           apiKeys.map((key) => (
             <div key={key.id} className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 p-4 border-b items-center hover:bg-gray-50 text-xs sm:text-sm">
               <div className="font-medium break-words">{key.name}</div>
-              <div className="font-mono text-xs max-w-[180px] truncate flex items-center gap-2 select-none">
+              <div className="font-mono text-sm max-w-[180px] truncate flex items-center gap-2 select-none">
                 {key.key.slice(0, 8)}...{key.key.slice(-6)}
                 {!viewedKeys[key.id] && (
                   <button
                     className="ml-1 p-1 hover:bg-gray-200 rounded"
                     title="Show API key"
-                    onClick={() => setShowKeyPopupId(key.id)}
+                    onClick={() => {
+                      if (!viewedKeys[key.id]) setShowKeyPopupId(key.id);
+                    }}
+                    disabled={!!viewedKeys[key.id]}
                   >
                     <Eye className="w-4 h-4" />
                   </button>
