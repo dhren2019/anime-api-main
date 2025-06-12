@@ -436,7 +436,7 @@ export default function SnippetsPage() {
 
   return (
     <div className="relative">
-      <h1 className="text-2xl font-bold text-white p-6 pb-4">Snippets y ejemplos de código</h1>
+      <h1 className="text-2xl font-bold text-gray-900 p-6 pb-4">Snippets y ejemplos de código</h1>
       <div className={`${!isPro ? 'filter blur-[8px] pointer-events-none' : ''}`}>
         <div className="space-y-6 p-6 pt-0">
           {SNIPPETS.map((snippet, index) => (

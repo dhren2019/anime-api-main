@@ -33,3 +33,13 @@ export const animesTable = pgTable("animes", {
     relations: text().array(), // Related anime URLs
     tags: text().array(), // Tags/genres
 });
+
+export const apiDragonballTable = pgTable("api_dragonball", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    race: varchar({ length: 100 }),
+    gender: varchar({ length: 50 }),
+    ki: integer(),
+    image: text(),
+    createdAt: timestamp().defaultNow().notNull(),
+});
