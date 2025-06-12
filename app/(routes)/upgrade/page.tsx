@@ -1,20 +1,27 @@
 "use client"
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function UpgradePage() {
-  // const confettiRef = useRef<HTMLDivElement>(null);
+  const [isPro, setIsPro] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // const handleProClick = (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   if (confettiRef.current) {
-  //     confettiRef.current.classList.remove('hidden');
-  //     confettiRef.current.classList.add('block');
-  //   }
-  //   setTimeout(() => {
-  //     window.location.href = '/api/stripe/checkout';
-  //   }, 1500);
-  // };
+  useEffect(() => {
+    const fetchPlan = async () => {
+      try {
+        const res = await fetch('/api/keys');
+        if (!res.ok) throw new Error('No se pudo obtener el plan');
+        const data = await res.json();
+        // Si alguna key es pro, el usuario es pro
+        setIsPro(Array.isArray(data.keys) && data.keys.some((k: any) => k.plan === 'pro'));
+      } catch (e) {
+        setIsPro(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPlan();
+  }, []);
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-white p-4 py-8">
@@ -38,7 +45,10 @@ export default function UpgradePage() {
               <li>Hasta 10 peticiones al mes</li>
               <li>Sin soporte prioritario</li>
             </ul>
-            <button className="bg-gray-200 text-gray-500 font-semibold px-6 py-2 rounded-full cursor-not-allowed" disabled>Plan actual</button>
+            {/* Solo mostrar el botón si NO es Pro */}
+            {!isPro && (
+              <button className="bg-gray-200 text-gray-500 font-semibold px-6 py-2 rounded-full cursor-not-allowed" disabled>Plan actual</button>
+            )}
           </div>
           {/* Plan Pro */}
           <div className="flex-1 bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center border-2 border-violet-500 relative max-w-xs w-full">
@@ -51,37 +61,43 @@ export default function UpgradePage() {
               <li>Hasta 150 peticiones al mes</li>
               <li>Soporte prioritario</li>
             </ul>
-            <button
-              onClick={async () => {
-                try {
-                  const response = await fetch('/api/stripe/checkout', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                  });
-                  const data = await response.json();
-                  if (response.ok && data.url) {
-                    window.location.href = data.url; // Redirige directamente sin animación
-                  } else {
-                    let errorMessage = 'Error desconocido al iniciar el checkout de Stripe.';
-                    try {
-                      const errorData = await response.json();
-                      errorMessage = errorData.error || errorMessage;
-                    } catch {
-                      errorMessage = await response.text();
+            {loading ? (
+              <button className="bg-gray-200 text-gray-500 font-semibold px-10 py-3 rounded-full cursor-wait" disabled>Cargando...</button>
+            ) : isPro ? (
+              <button className="bg-gray-200 text-gray-500 font-semibold px-10 py-3 rounded-full cursor-not-allowed" disabled>Plan actual</button>
+            ) : (
+              <button
+                onClick={async () => {
+                  try {
+                    const response = await fetch('/api/stripe/checkout', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                    });
+                    const data = await response.json();
+                    if (response.ok && data.url) {
+                      window.location.href = data.url; // Redirige directamente sin animación
+                    } else {
+                      let errorMessage = 'Error desconocido al iniciar el checkout de Stripe.';
+                      try {
+                        const errorData = await response.json();
+                        errorMessage = errorData.error || errorMessage;
+                      } catch {
+                        errorMessage = await response.text();
+                      }
+                      alert(`Error al iniciar el checkout de Stripe: ${errorMessage}`);
                     }
-                    alert(`Error al iniciar el checkout de Stripe: ${errorMessage}`);
+                  } catch (error: any) {
+                    console.error('Error en la petición a Stripe:', error);
+                    alert(`Error de conexión. Inténtalo de nuevo más tarde. Detalles: ${error.message || error}`);
                   }
-                } catch (error: any) {
-                  console.error('Error en la petición a Stripe:', error);
-                  alert(`Error de conexión. Inténtalo de nuevo más tarde. Detalles: ${error.message || error}`);
-                }
-              }}
-              className="bg-gradient-to-r from-violet-600 to-blue-500 text-white font-bold px-10 py-3 rounded-full shadow-lg hover:from-violet-700 hover:to-blue-600 transition text-lg mt-2"
-            >
-              ¡Quiero ser Pro!
-            </button>
+                }}
+                className="bg-gradient-to-r from-violet-600 to-blue-500 text-white font-bold px-10 py-3 rounded-full shadow-lg hover:from-violet-700 hover:to-blue-600 transition text-lg mt-2"
+              >
+                ¡Quiero ser Pro!
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -119,4 +135,4 @@ export default function UpgradePage() {
 //       </g>
 //     </svg>
 //   );
-// } 
+// }

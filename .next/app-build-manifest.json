@@ -11,6 +11,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/api/user/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/user/route.js"
+    ],
     "/(routes)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,20 +31,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/keys/route.js"
     ],
+    "/(routes)/upgrade/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/upgrade/page.js"
+    ],
+    "/(routes)/snippets/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/snippets/page.js"
+    ],
     "/(routes)/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(routes)/search/page.js"
-    ],
-    "/api/user/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/user/route.js"
-    ],
-    "/snippets/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/snippets/page.js"
     ]
   }
 }

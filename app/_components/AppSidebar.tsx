@@ -8,7 +8,7 @@ import {
     SidebarHeader,
     SidebarMenu,
 } from "@/components/ui/sidebar"
-import { Key, Settings, Search, Code } from "lucide-react"
+import { Key, Settings, Search, Code, Lock } from "lucide-react"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -28,6 +28,7 @@ const items = [
         title: "Snippets",
         url: "/snippets",
         icon: Code,
+        requiresPro: true
     },
     {
         title: "Settings",
@@ -45,6 +46,8 @@ interface SidebarUpgradeProps {
 
 export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free' }: SidebarUpgradeProps) {
     const path = usePathname();
+    const isPro = plan === 'pro';
+
     return (
         <Sidebar>
             <SidebarHeader>
@@ -63,15 +66,19 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     href={item.url}
                                     key={index}
                                     className={`flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-150
-                                        text-base font-semibold tracking-tight
+                                        text-base font-semibold tracking-tight relative
                                         ${path === item.url
                                             ? 'bg-gradient-to-r from-violet-100 to-blue-100 text-violet-700 shadow-sm'
                                             : 'text-gray-500 hover:bg-gray-100 hover:text-violet-700'}
+                                        ${item.requiresPro && !isPro ? 'opacity-50' : ''}
                                     `}
                                     style={{ letterSpacing: '-0.01em' }}
                                 >
                                     <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
                                     <span>{item.title}</span>
+                                    {item.requiresPro && !isPro && (
+                                        <Lock className="h-4 w-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" />
+                                    )}
                                 </Link>
                             ))}
                         </SidebarMenu>

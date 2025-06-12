@@ -31,16 +31,16 @@ export default function Home() {
         <div className="flex items-center gap-3">
           {/* <Image src={'/logo.svg'} alt="logo" width={56} height={56} /> */}
           <span className="font-extrabold text-2xl tracking-tight text-white">Anime API Platform</span>
-        </div>
+                </div>
         <div>
           {!user ? (
             <SignInButton mode='modal' signUpForceRedirectUrl={'/dashboard'}>
               <button className="bg-[#FF640A] text-white px-5 py-2 rounded font-bold shadow hover:bg-orange-500 transition">Iniciar sesión</button>
-            </SignInButton>
+              </SignInButton>
           ) : (
-            <UserButton />
+                <UserButton />
           )}
-        </div>
+          </div>
       </header>
 
       {/* Hero Section */}
@@ -80,7 +80,7 @@ export default function Home() {
       <section className="max-w-[1200px] w-full mx-auto mt-20 flex flex-col md:flex-row items-center gap-16 px-8">
         <div className="flex-1 flex justify-center">
           <Image src="/anime-platform.webp" alt="Beneficios para desarrolladores" width={420} height={260} className="rounded-lg shadow-2xl w-full object-cover" />
-        </div>
+          </div>
         <div className="flex-1">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#FF640A]">Pensada para desarrolladores</h2>
           <ul className="text-gray-200 text-lg space-y-3 mb-4 list-disc list-inside">
@@ -91,7 +91,7 @@ export default function Home() {
             <li>Perfecta para bots, apps móviles, dashboards y proyectos comerciales</li>
           </ul>
           <div className="text-gray-400 text-base">Únete a cientos de devs que ya integran Anime API Platform en sus proyectos.</div>
-        </div>
+          </div>
       </section>
 
       {/* Plataformas compatibles y ejemplo de integración */}
@@ -118,7 +118,7 @@ export default function Home() {
         </div>
         <div className="flex-1 flex justify-center order-1 md:order-2">
           <Image src="/streamingbanner-2.webp" alt="Plataformas compatibles" width={600} height={260} className="rounded-lg shadow-2xl w-full object-cover" />
-        </div>
+      </div>
       </section>
 
       {/* Beneficios */}
@@ -127,17 +127,17 @@ export default function Home() {
           <span className="text-4xl mb-3">⚡</span>
           <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Ultra rápida y estable</h3>
           <p className="text-gray-300 text-base text-center">Infraestructura cloud, baja latencia y alta disponibilidad para tus proyectos.</p>
-        </div>
+            </div>
         <div className="bg-[#181F2A] rounded-xl shadow p-7 flex flex-col items-center border border-[#232B3A]">
           <span className="text-4xl mb-3">🔄</span>
           <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Datos siempre actualizados</h3>
           <p className="text-gray-300 text-base text-center">Información de anime, imágenes y metadatos sincronizados a diario.</p>
-        </div>
+            </div>
         <div className="bg-[#181F2A] rounded-xl shadow p-7 flex flex-col items-center border border-[#232B3A]">
           <span className="text-4xl mb-3">🛠️</span>
           <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Integración instantánea</h3>
           <p className="text-gray-300 text-base text-center">Documentación clara y ejemplos para cualquier lenguaje y plataforma.</p>
-        </div>
+            </div>
       </section>
 
       {/* Sección PRO */}
@@ -157,7 +157,7 @@ export default function Home() {
           >
             Hazte PRO y lleva tu proyecto al siguiente nivel
           </a>
-        </div>
+            </div>
       </section>
 
       {/* Showcase de dispositivos */}

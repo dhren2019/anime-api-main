@@ -1,9 +1,9 @@
-"use client";
-import { useState } from "react";
-import { SidebarProvider } from '@/components/ui/sidebar';
-import { AppSidebar } from '../_components/AppSidebar';
-import AppHeader from '../_components/AppHeader';
-import React from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
+import { useUser } from "@clerk/nextjs";
+import { Lock } from "lucide-react";
+import AppHeader from "@/app/_components/AppHeader";
+import { AppSidebar } from "@/app/_components/AppSidebar";
 
 interface CodeTab {
   language: string;
@@ -201,7 +201,20 @@ const AnimeCards = () => {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="bg-[#232B3A] p-6 rounded-lg max-w-md w-full">
             <h2 className="text-2xl font-bold text-white">{selectedAnime.title}</h2>
-            {/* ... más detalles del anime ... */}
+            <img src={selectedAnime.image} alt={selectedAnime.title} className="w-full h-48 object-cover rounded-lg my-4" />
+            <p className="text-gray-300 mb-4">{selectedAnime.synopsis}</p>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div><span className="text-gray-400">Tipo:</span> {selectedAnime.type}</div>
+              <div><span className="text-gray-400">Episodios:</span> {selectedAnime.episodes}</div>
+              <div><span className="text-gray-400">Estado:</span> {selectedAnime.status}</div>
+              <div><span className="text-gray-400">Año:</span> {selectedAnime.year}</div>
+            </div>
+            <button 
+              onClick={() => setSelectedAnime(null)}
+              className="mt-6 w-full bg-[#127BD5] text-white py-2 rounded-lg hover:bg-[#1167b1] transition-colors"
+            >
+              Cerrar
+            </button>
           </div>
         </div>
       )}
@@ -232,8 +245,8 @@ const AnimeCards = () => {
   font-size: 10rem;
   font-weight: 900;
   line-height: 0.8;
-  color: rgba(255, 255, 255, 0.1);
-  z-index: 0;
+  color: rgba(18, 123, 213, 0.5);
+  z-index: 99999;
 }
 
 .anime-card > * {
@@ -376,136 +389,100 @@ fetch('https://animeapi.dev/api/v1/anime?query=naruto', {
   });
 </script>`
     }]
-  },
-  {
-    title: "Tarjeta de resultados (React + fetch)",
-    preview: (
-      <div className="bg-[#181F2A] p-4 rounded mb-2 text-white">
-        <b>Resultado:</b> <br />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
-          <div className="flex gap-3 items-center bg-[#232B3A] rounded p-3">
-            <img src="https://cdn.myanimelist.net/images/anime/6/73245.jpg" alt="One Piece" className="w-16 h-16 object-cover rounded" />
-            <div>
-              <div className="font-bold">One Piece</div>
-              <div className="text-xs text-gray-400">El joven Luffy se embarca en la aventura pirata más grande de todos los tiempos.</div>
-            </div>
-          </div>
-          <div className="flex gap-3 items-center bg-[#232B3A] rounded p-3">
-            <img src="https://cdn.myanimelist.net/images/anime/2/73249.jpg" alt="One Piece: Episode of Sabo" className="w-16 h-16 object-cover rounded" />
-            <div>
-              <div className="font-bold">One Piece: Episode of Sabo</div>
-              <div className="text-xs text-gray-400">Especial sobre la historia de Sabo, hermano de Luffy y Ace.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    code: [
-      {
-        language: "React",
-        content: `import React from 'react';
-
-const AnimeGrid = () => {
-  const animes = [
-    {
-      id: 1,
-      title: "One Piece",
-      synopsis: "El joven Luffy se embarca en la aventura pirata más grande de todos los tiempos.",
-      image: "https://cdn.myanimelist.net/images/anime/6/73245.jpg"
-    },
-    {
-      id: 2,
-      title: "One Piece: Episode of Sabo",
-      synopsis: "Especial sobre la historia de Sabo, hermano de Luffy y Ace.",
-      image: "https://cdn.myanimelist.net/images/anime/2/73249.jpg"
-    }
-  ];
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {animes.map(anime => (
-        <div key={anime.id} className="flex gap-3 items-center bg-[#232B3A] rounded p-3">
-          <img src={anime.image} alt={anime.title} className="w-16 h-16 object-cover rounded" />
-          <div>
-            <div className="font-bold text-white">{anime.title}</div>
-            <div className="text-xs text-gray-400">{anime.synopsis}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};`
-      },
-      {
-        language: "JavaScript",
-        content: `fetch('https://animeapi.dev/api/v1/anime?query=one piece', {
-  headers: {
-    'Authorization': 'Bearer TU_API_KEY'
-  }
-})
-.then(res => res.json())
-.then(data => {
-  const container = document.querySelector('.anime-grid');
-  
-  data.animes.forEach(anime => {
-    const card = document.createElement('div');
-    card.className = 'flex gap-3 items-center bg-[#232B3A] rounded p-3';
-    
-    card.innerHTML = \`
-      <img src="\${anime.image}" alt="\${anime.title}" class="w-16 h-16 object-cover rounded" />
-      <div>
-        <div class="font-bold text-white">\${anime.title}</div>
-        <div class="text-xs text-gray-400">\${anime.synopsis}</div>
-      </div>
-    \`;
-    
-    container.appendChild(card);
-  });
-});`
-      }
-    ]
   }
 ];
 
 export default function SnippetsPage() {
+  const { user } = useUser();
   const [copied, setCopied] = useState<number | null>(null);
+  const [plan, setPlan] = useState<'free' | 'pro'>('free');
+  const [requestsCount, setRequestsCount] = useState(0);
+  const [requestsLimit, setRequestsLimit] = useState(10);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPlan() {
+      try {
+        const res = await fetch('/api/keys');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.keys && data.keys.length > 0) {
+          setPlan(data.keys[0].plan ?? 'free');
+          setRequestsCount(data.keys[0].requestsCount ?? 0);
+          setRequestsLimit(data.keys[0].requestsLimit ?? (data.keys[0].plan === 'pro' ? 150 : 10));
+        }
+      } catch {}
+      setLoading(false);
+    }
+    fetchPlan();
+  }, []);
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Acceso Restringido</h1>
+          <p className="text-gray-500">Debes iniciar sesión para ver esta página.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center text-white">Cargando...</div>;
+  }
+
+  const isPro = plan === 'pro';
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main className="w-full">
-        <AppHeader />
-        <div className="p-6">
-          <h1 className="text-2xl font-bold mb-6 text-white">Snippets y ejemplos de código</h1>
-          <div className="space-y-8">
-            {SNIPPETS.map((snippet, index) => (
-              <div key={index} className="bg-[#232B3A] rounded-lg p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-white">{snippet.title}</h2>
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(Array.isArray(snippet.code) ? snippet.code[0].content : snippet.code);
-                      setCopied(index);
-                      setTimeout(() => setCopied(null), 2000);
-                    }}
-                    className="bg-[#2A3444] text-sm px-3 py-1.5 rounded hover:bg-[#313E52] transition-colors text-white"
-                  >
-                    {copied === index ? "¡Copiado!" : "Copiar código"}
-                  </button>
-                </div>
-                {snippet.preview}
-                {Array.isArray(snippet.code) ? (
-                  <CodeTabs code={snippet.code} />
-                ) : (
-                  <pre className="bg-[#181F2A] p-4 rounded mt-4 overflow-x-auto">
-                    <code className="text-sm text-white">{snippet.code}</code>
-                  </pre>
-                )}
+    <div className="relative">
+      <h1 className="text-2xl font-bold text-white p-6 pb-4">Snippets y ejemplos de código</h1>
+      <div className={`${!isPro ? 'filter blur-[8px] pointer-events-none' : ''}`}>
+        <div className="space-y-6 p-6 pt-0">
+          {SNIPPETS.map((snippet, index) => (
+            <div key={index} className="bg-[#232B3A] rounded-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-white">{snippet.title}</h2>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(Array.isArray(snippet.code) ? snippet.code[0].content : snippet.code);
+                    setCopied(index);
+                    setTimeout(() => setCopied(null), 2000);
+                  }}
+                  className="bg-[#2A3444] text-sm px-3 py-1.5 rounded hover:bg-[#313E52] transition-colors text-white"
+                >
+                  {copied === index ? "¡Copiado!" : "Copiar código"}
+                </button>
               </div>
-            ))}
+              {snippet.preview}
+              {Array.isArray(snippet.code) ? (
+                <CodeTabs code={snippet.code} />
+              ) : (
+                <pre className="bg-[#181F2A] p-4 rounded mt-4 overflow-x-auto">
+                  <code className="text-sm text-white">{snippet.code}</code>
+                </pre>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+      {!isPro && (
+        <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-auto bg-[#181F2A]/10">
+          <div className="bg-[#232B3A] p-8 rounded-lg text-center max-w-md mx-auto shadow-xl border border-[#127BD5]/20">
+            <Lock className="w-12 h-12 text-[#127BD5] mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Contenido exclusivo Pro</h2>
+            <p className="text-gray-300 mb-4">
+              Actualiza tu cuenta a Pro para acceder a todos los snippets y ejemplos de código.
+            </p>
+            <a
+              href="/upgrade"
+              className="inline-block bg-[#127BD5] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#1167b1] transition-colors"
+            >
+              Actualizar a Pro
+            </a>
           </div>
         </div>
-      </main>
-    </SidebarProvider>
+      )}
+    </div>
   );
-} 
+}

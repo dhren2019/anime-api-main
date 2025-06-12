@@ -1,6 +1,10 @@
 {
+  "/api/user/route": "app/api/user/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/keys/route": "app/api/keys/route.js",
   "/page": "app/page.js",
+  "/(routes)/upgrade/page": "app/(routes)/upgrade/page.js",
+  "/(routes)/snippets/page": "app/(routes)/snippets/page.js",
   "/(routes)/search/page": "app/(routes)/search/page.js",
-  "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
-  "/snippets/page": "app/snippets/page.js"
+  "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js"
 }
