@@ -32,14 +32,30 @@ export const animesTable = pgTable("animes", {
     synonyms: text().array(), // Alternative titles
     relations: text().array(), // Related anime URLs
     tags: text().array(), // Tags/genres
+    dragonball_id: integer(), // Nueva columna para relacionar con api_dragonball
 });
 
 export const apiDragonballTable = pgTable("api_dragonball", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),
+    ki: integer(),
+    maxKi: integer(),
     race: varchar({ length: 100 }),
     gender: varchar({ length: 50 }),
-    ki: integer(),
+    description: text(),
     image: text(),
+    affiliation: varchar({ length: 255 }),
+    originPlanet: varchar({ length: 255 }),
+    transformations: text(), // JSON stringified array
+    family: text(), // JSON stringified array
+    saga: varchar({ length: 255 }),
+    height: varchar({ length: 50 }),
+    weight: varchar({ length: 50 }),
+    hair: varchar({ length: 100 }),
+    eyes: varchar({ length: 100 }),
+    deceased: boolean(),
+    debut: text(), // JSON stringified object
+    relatives: text(), // JSON stringified array
+    techniques: text(), // JSON stringified array
     createdAt: timestamp().defaultNow().notNull(),
 });
