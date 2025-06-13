@@ -1,5 +1,12 @@
+import 'dotenv/config';
 import { db } from '../configs/db';
 import { apiDragonballTable } from '../configs/schema';
+
+function parseKi(value: any) {
+  if (!value) return null;
+  const num = Number(String(value).replace(/\./g, ''));
+  return isNaN(num) ? null : num;
+}
 
 async function fetchAndInsertDragonball() {
   const res = await fetch('https://dragonball-api.com/api/characters');
@@ -9,8 +16,8 @@ async function fetchAndInsertDragonball() {
   for (const char of characters) {
     await db.insert(apiDragonballTable).values({
       name: char.name,
-      ki: char.ki ?? null,
-      maxKi: char.maxKi ?? null,
+      ki: parseKi(char.ki),
+      maxKi: parseKi(char.maxKi),
       race: char.race ?? null,
       gender: char.gender ?? null,
       description: char.description ?? null,

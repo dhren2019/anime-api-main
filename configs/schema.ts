@@ -1,4 +1,4 @@
-import { integer, pgTable, varchar, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { integer, pgTable, varchar, text, timestamp, boolean, bigint } from "drizzle-orm/pg-core";
 
 export const usersTable = pgTable("users", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -38,24 +38,51 @@ export const animesTable = pgTable("animes", {
 export const apiDragonballTable = pgTable("api_dragonball", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),
-    ki: integer(),
-    maxKi: integer(),
-    race: varchar({ length: 100 }),
-    gender: varchar({ length: 50 }),
-    description: text(),
-    image: text(),
-    affiliation: varchar({ length: 255 }),
-    originPlanet: varchar({ length: 255 }),
-    transformations: text(), // JSON stringified array
-    family: text(), // JSON stringified array
+    image: varchar({ length: 255 }).notNull(),
+    ki: varchar({ length: 255 }).notNull(),
+    maxKi: varchar({ length: 255 }).notNull(),
+    race: varchar({ length: 100 }).notNull(),
+    gender: varchar({ length: 50 }).notNull(),
+    affiliation: varchar({ length: 255 }).notNull(),
+    description: text().notNull(),
+    originPlanetId: integer().references(() => dragonballPlanetTable.id),
+    transformations: text(),
+    family: text(),
     saga: varchar({ length: 255 }),
     height: varchar({ length: 50 }),
     weight: varchar({ length: 50 }),
     hair: varchar({ length: 100 }),
     eyes: varchar({ length: 100 }),
     deceased: boolean(),
-    debut: text(), // JSON stringified object
-    relatives: text(), // JSON stringified array
-    techniques: text(), // JSON stringified array
+    debut: text(),
+    relatives: text(),
+    techniques: text(),
+    createdAt: timestamp().defaultNow().notNull(),
+    powerStats: text(),
+    locations: text(),
+    species: text(),
+    movies: text(),
+    series: text(),
+    movieCharacters: text(),
+    seriesCharacters: text(),
+    userInfo: text(),
+});
+
+export const dragonballPlanetTable = pgTable("dragonball_planet", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    description: text(),
+    image: text(),
+    races: text(), // JSON stringified array
+    createdAt: timestamp().defaultNow().notNull(),
+});
+
+export const dragonballTransformationTable = pgTable("dragonball_transformation", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    ki: bigint({ mode: 'number' }),
+    image: text(),
+    description: text(),
+    characters: text(), // JSON stringified array (ids o nombres de personajes)
     createdAt: timestamp().defaultNow().notNull(),
 });
