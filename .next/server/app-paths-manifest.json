@@ -1,7 +1,12 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/keys/route": "app/api/keys/route.js",
+  "/api/user/route": "app/api/user/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
   "/(routes)/upgrade/page": "app/(routes)/upgrade/page.js",
-  "/(routes)/snippets/page": "app/(routes)/snippets/page.js"
+  "/(routes)/snippets/page": "app/(routes)/snippets/page.js",
+  "/(routes)/settings/page": "app/(routes)/settings/page.js",
+  "/(routes)/search/page": "app/(routes)/search/page.js"
 }

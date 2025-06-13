@@ -387,8 +387,36 @@ const transformations: DbTransformation[] = [
 async function importAllDragonballData() {
   try {
     await clearTables();
-    await importPlanets(planets);
-    await importCharacters(characters);
+    // 1. Insertar planetas y obtener sus IDs reales
+    const planetResults = [];
+    for (const planet of planets) {
+      const [result] = await db.insert(dragonballPlanetTable)
+        .values({
+          name: planet.name,
+          description: planet.description || '',
+          image: planet.image ? transformLocalImagePath(planet.image, 'planets') : '',
+          races: planet.races || '[]'
+        })
+        .returning({ id: dragonballPlanetTable.id, name: dragonballPlanetTable.name });
+      planetResults.push(result);
+    }
+    // Crear un mapa nombre->id
+    const planetNameToId = Object.fromEntries(planetResults.map(p => [p.name, p.id]));
+
+    // 2. Asignar el ID correcto a los personajes
+    const charactersWithPlanetId = characters.map(char => {
+      let originPlanetId = undefined;
+      if (char.originPlanetId) {
+        // Buscar el nombre del planeta según el ID "antiguo"
+        const planetNames = Object.keys(planetNameToId);
+        // Asumimos que el array original tenía el mismo orden, así que el ID 1 es el primer planeta, etc.
+        const planetName = planetNames[char.originPlanetId - 1];
+        originPlanetId = planetNameToId[planetName];
+      }
+      return { ...char, originPlanetId };
+    });
+
+    await importCharacters(charactersWithPlanetId);
     await importTransformations(transformations);
     console.log('✅ Importación completa');
   } catch (error) {
