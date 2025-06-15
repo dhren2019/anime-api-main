@@ -31,30 +31,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/keys/route.js"
     ],
-    "/(routes)/upgrade/page": [
+    "/(routes)/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/upgrade/page.js"
+      "static/chunks/app/(routes)/search/page.js"
+    ],
+    "/api/v1/anime/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/v1/anime/route.js"
     ],
     "/(routes)/snippets/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(routes)/snippets/page.js"
     ],
-    "/(routes)/search/page": [
+    "/(routes)/upgrade/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/search/page.js"
-    ],
-    "/(routes)/settings/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/settings/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/(routes)/upgrade/page.js"
     ]
   }
 }
