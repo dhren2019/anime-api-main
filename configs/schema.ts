@@ -80,9 +80,14 @@ export const dragonballPlanetTable = pgTable("dragonball_planet", {
 export const dragonballTransformationTable = pgTable("dragonball_transformation", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),
-    ki: bigint({ mode: 'number' }),
+    ki: text(),
     image: text(),
     description: text(),
-    characters: text(), // JSON stringified array (ids o nombres de personajes)
+    characters: text(),
+    affiliation: varchar({ length: 255 }),
+    maxKi: varchar({ length: 255 }),
+    race: varchar({ length: 100 }),
+    gender: varchar({ length: 50 }),
+    originPlanetId: integer(),
     createdAt: timestamp().defaultNow().notNull(),
 });

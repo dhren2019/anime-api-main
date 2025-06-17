@@ -1,55 +1,35 @@
 {
   "pages": {
+    "/api/dragonball/characters/goku/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/dragonball/characters/goku/route.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/api/dragonball/characters/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/api/dragonball/characters/route.js"
     ],
-    "/api/user/route": [
+    "/api/dragonball/planets/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/user/route.js"
+      "static/chunks/app/api/dragonball/planets/route.js"
     ],
-    "/(routes)/layout": [
+    "/api/dragonball/transformations/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/layout.js"
+      "static/chunks/app/api/dragonball/transformations/route.js"
     ],
-    "/(routes)/dashboard/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/dashboard/page.js"
-    ],
-    "/api/keys/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/keys/route.js"
-    ],
-    "/(routes)/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/search/page.js"
-    ],
-    "/api/v1/anime/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/v1/anime/route.js"
-    ],
-    "/(routes)/snippets/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/snippets/page.js"
-    ],
-    "/(routes)/upgrade/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/upgrade/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }
