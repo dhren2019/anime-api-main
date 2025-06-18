@@ -7,8 +7,8 @@ interface Planet extends RowDataPacket {
     id: number;
     name: string;
     description: string;
-    population: number;
-    image_url: string;
+    image: string;
+    isDestroyed: number;
 }
 
 export async function GET(request: Request) {
@@ -16,20 +16,23 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search');
         
-        const connection = await pool.getConnection();        let query = `
+        const connection = await pool.getConnection();
+          let query = `
             SELECT 
                 id,
                 name,
                 description,
-                population,
-                image_url
-            FROM planets
+                image,
+                isDestroyed
+            FROM railway.planets
         `;
-        let params: string[] = [];
+        let params: any[] = [];
 
         if (search) {
-            query += ' WHERE LOWER(name) LIKE ?';
-            params.push(`%${search.toLowerCase()}%`);
+            query += ' WHERE name LIKE ?';
+            params.push(`%${search}%`);
+            console.log('Search query:', query);
+            console.log('Search params:', params);
         }
 
         const [rows] = await connection.execute<Planet[]>(query, params);
@@ -45,16 +48,17 @@ export async function GET(request: Request) {
             );
         }
         
-        // Formatear las URLs de las imágenes antes de enviar la respuesta
+        // Format the image URLs before sending the response
         const formattedData = rows.map(planet => ({
             ...planet,
-            image_url: formatImageUrl(planet.image_url)
+            image_url: planet.image
         }));
-        
+
         return NextResponse.json({
             message: 'Planets retrieved successfully',
             data: formattedData
         });
+
     } catch (error) {
         console.error('Error fetching planets:', error);
         return NextResponse.json(
@@ -70,8 +74,8 @@ export async function POST(request: Request) {
         const connection = await pool.getConnection();
         
         const [result] = await connection.execute(
-            'INSERT INTO planets (name, description, population) VALUES (?, ?, ?)',
-            [body.name, body.description, body.population]
+            'INSERT INTO planets (name, description, image, isDestroyed) VALUES (?, ?, ?, ?)',
+            [body.name, body.description, body.image, body.isDestroyed || 0]
         );
         
         connection.release();

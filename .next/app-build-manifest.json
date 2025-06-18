@@ -1,30 +1,15 @@
 {
   "pages": {
-    "/api/dragonball/characters/goku/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/dragonball/characters/goku/route.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/api/dragonball/characters/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/dragonball/characters/route.js"
-    ],
     "/api/dragonball/planets/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/dragonball/planets/route.js"
-    ],
-    "/api/dragonball/transformations/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/dragonball/transformations/route.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
