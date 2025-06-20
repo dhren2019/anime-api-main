@@ -10,24 +10,37 @@ interface Transformation extends RowDataPacket {
     characterId: number;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+    let connection;
     try {
-        const connection = await pool.getConnection();
-        const query = `SELECT * FROM transformaciones`;
-        const [transformaciones] = await connection.execute<Transformation[]>(query);
-        connection.release();
+        const { searchParams } = new URL(request.url);
+        const name = searchParams.get('name');
         
-        if (!transformaciones || transformaciones.length === 0) {
+        connection = await pool.getConnection();
+        let query = 'SELECT * FROM transformations';
+        let params = [];
+
+        if (name) {
+            query += ' WHERE name LIKE ?';
+            params.push(`${name}`);
+        }
+
+        query += ' ORDER BY id ASC';
+        
+        const [transformations] = await connection.execute<Transformation[]>(query, params);
+
+        // Si se busca por nombre y no se encuentra
+        if (name && transformations.length === 0) {
             return NextResponse.json({
                 success: false,
-                error: 'No transformations found'
+                error: 'Transformation not found'
             }, { status: 404 });
         }
-        
+
         return NextResponse.json({
             success: true,
-            count: transformaciones.length,
-            data: transformaciones
+            count: transformations.length,
+            data: name ? transformations[0] : transformations
         });
 
     } catch (error) {
@@ -36,21 +49,25 @@ export async function GET() {
             success: false,
             error: 'Error retrieving transformations'
         }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }
 
 export async function POST(request: Request) {
+    let connection;
     try {
         const body = await request.json();
         const { name, image, ki, characterId } = body;
         
-        const connection = await pool.getConnection();
+        connection = await pool.getConnection();
         const [result] = await connection.execute(
-            'INSERT INTO transformaciones (name, image, ki, characterId) VALUES (?, ?, ?, ?)',
+            'INSERT INTO transformations (name, image, ki, characterId) VALUES (?, ?, ?, ?)',
             [name, image, ki, characterId]
         );
         
-        connection.release();
         return NextResponse.json({
             success: true,
             data: result
@@ -61,5 +78,9 @@ export async function POST(request: Request) {
             success: false,
             error: 'Error creating transformation'
         }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }

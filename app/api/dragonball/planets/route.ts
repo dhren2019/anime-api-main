@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/mysql';
-import { formatImageUrl } from '@/lib/image-utils';
 import { RowDataPacket } from 'mysql2';
 
 interface Planet extends RowDataPacket {
@@ -12,82 +11,76 @@ interface Planet extends RowDataPacket {
 }
 
 export async function GET(request: Request) {
+    let connection;
     try {
         const { searchParams } = new URL(request.url);
-        const search = searchParams.get('search');
+        const name = searchParams.get('name');
         
-        const connection = await pool.getConnection();
-          let query = `
-            SELECT 
-                id,
-                name,
-                description,
-                image,
-                isDestroyed
-            FROM railway.planets
-        `;
-        let params: any[] = [];
+        connection = await pool.getConnection();
+        let query = 'SELECT * FROM planets';
+        let params = [];
 
-        if (search) {
+        if (name) {
             query += ' WHERE name LIKE ?';
-            params.push(`%${search}%`);
-            console.log('Search query:', query);
-            console.log('Search params:', params);
+            params.push(`${name}`);
         }
 
-        const [rows] = await connection.execute<Planet[]>(query, params);
-        connection.release();
+        query += ' ORDER BY id ASC';
         
-        if (!rows || rows.length === 0) {
-            return NextResponse.json(
-                { 
-                    message: 'No planets found', 
-                    data: [] 
-                },
-                { status: 200 }
-            );
+        const [planets] = await connection.execute<Planet[]>(query, params);
+
+        // Si se busca por nombre y no se encuentra
+        if (name && planets.length === 0) {
+            return NextResponse.json({
+                success: false,
+                error: 'Planet not found'
+            }, { status: 404 });
         }
-        
-        // Format the image URLs before sending the response
-        const formattedData = rows.map(planet => ({
-            ...planet,
-            image_url: planet.image
-        }));
 
         return NextResponse.json({
-            message: 'Planets retrieved successfully',
-            data: formattedData
+            success: true,
+            count: planets.length,
+            data: name ? planets[0] : planets
         });
 
     } catch (error) {
-        console.error('Error fetching planets:', error);
-        return NextResponse.json(
-            { error: 'Internal Server Error' },
-            { status: 500 }
-        );
+        console.error('Error:', error);
+        return NextResponse.json({
+            success: false,
+            error: 'Error retrieving planets'
+        }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }
 
 export async function POST(request: Request) {
+    let connection;
     try {
         const body = await request.json();
-        const connection = await pool.getConnection();
+        const { name, description, image, isDestroyed } = body;
         
+        connection = await pool.getConnection();
         const [result] = await connection.execute(
             'INSERT INTO planets (name, description, image, isDestroyed) VALUES (?, ?, ?, ?)',
-            [body.name, body.description, body.image, body.isDestroyed || 0]
+            [name, description, image, isDestroyed]
         );
         
-        connection.release();
         return NextResponse.json({
-            message: 'Planet created successfully',
+            success: true,
             data: result
         });
     } catch (error) {
-        console.error('Error creating planet:', error);
-        return NextResponse.json(
-            { error: 'Internal Server Error' },
-            { status: 500 }
-        );
+        console.error('Error:', error);
+        return NextResponse.json({
+            success: false,
+            error: 'Error creating planet'
+        }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }

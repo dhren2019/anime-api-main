@@ -8,24 +8,37 @@ interface Character extends RowDataPacket {
     image: string;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+    let connection;
     try {
-        const connection = await pool.getConnection();
-        const query = `SELECT * FROM characters`;
-        const [characters] = await connection.execute<Character[]>(query);
-        connection.release();
+        const { searchParams } = new URL(request.url);
+        const name = searchParams.get('name');
         
-        if (!characters || characters.length === 0) {
+        connection = await pool.getConnection();
+        let query = 'SELECT * FROM characters';
+        let params = [];
+
+        if (name) {
+            query += ' WHERE name LIKE ?';
+            params.push(`${name}`);
+        }
+
+        query += ' ORDER BY id ASC';
+        
+        const [characters] = await connection.execute<Character[]>(query, params);
+
+        // Si se busca por nombre y no se encuentra
+        if (name && characters.length === 0) {
             return NextResponse.json({
                 success: false,
-                error: 'No characters found'
+                error: 'Character not found'
             }, { status: 404 });
         }
-        
+
         return NextResponse.json({
             success: true,
             count: characters.length,
-            data: characters
+            data: name ? characters[0] : characters
         });
 
     } catch (error) {
@@ -34,21 +47,25 @@ export async function GET() {
             success: false,
             error: 'Error retrieving characters'
         }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }
 
 export async function POST(request: Request) {
+    let connection;
     try {
         const body = await request.json();
         const { name, image } = body;
         
-        const connection = await pool.getConnection();
+        connection = await pool.getConnection();
         const [result] = await connection.execute(
             'INSERT INTO characters (name, image) VALUES (?, ?)',
             [name, image]
         );
         
-        connection.release();
         return NextResponse.json({
             success: true,
             data: result
@@ -59,5 +76,9 @@ export async function POST(request: Request) {
             success: false,
             error: 'Error creating character'
         }, { status: 500 });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
     }
 }
