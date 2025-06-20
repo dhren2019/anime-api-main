@@ -33,7 +33,13 @@ export function PlanetDetails({ isOpen, onClose, planet }: PlanetDetailsProps) {
                 {planet.isDestroyed && (
                   <p className="text-red-500 font-semibold">Status: Destroyed</p>
                 )}
-                <p className="text-gray-300">{planet.description}</p>
+                {planet.description && (
+                  <p className="text-gray-300">
+                    {planet.isDestroyed 
+                      ? planet.description
+                      : planet.description.replace(/\s*0\s*$/, '')}
+                  </p>
+                )}
               </div>
             </div>
           </div>

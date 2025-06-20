@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RiSearchLine } from "react-icons/ri";
-
-import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import { CharacterCard } from "@/components/dragonball/CharacterCard";
 import { CharacterDetails } from "@/components/dragonball/CharacterDetails";
 import { TransformationDetails } from "@/components/dragonball/TransformationDetails";
@@ -40,7 +38,6 @@ interface Planet {
 }
 
 export default function DragonBallPage() {
-  const [search, setSearch] = useState("");
   const [characters, setCharacters] = useState<Character[]>([]);
   const [transformations, setTransformations] = useState<Transformation[]>([]);
   const [planets, setPlanets] = useState<Planet[]>([]);
@@ -55,11 +52,7 @@ export default function DragonBallPage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let endpoint = `/api/dragonball/${activeTab}`;
-        if (search) {
-          endpoint += `?name=${encodeURIComponent(search)}`;
-        }
-
+        const endpoint = `/api/dragonball/${activeTab}`;
         const response = await fetch(endpoint);
         const data = await response.json();
 
@@ -84,7 +77,7 @@ export default function DragonBallPage() {
     };
 
     fetchData();
-  }, [search, activeTab]);
+  }, [activeTab]);
 
   const renderCharacters = () => {
     if (!characters?.length) {
@@ -191,18 +184,15 @@ export default function DragonBallPage() {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="mb-8">
-        <div className="relative">
-          <RiSearchLine className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <Input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-10 bg-gray-900 border-gray-800 text-white"
-          />
-        </div>
+    <div className="container mx-auto ">
+      <div className="w-full max-w-sm mx-auto ">
+        <Image
+          src="/dragonball-img.png"
+          alt="Dragon Ball"
+          width={400}
+          height={200}
+          className="w-full object-contain"
+        />
       </div>
 
       <Tabs defaultValue="characters" value={activeTab} onValueChange={setActiveTab}>

@@ -8,13 +8,31 @@ import {
     SidebarHeader,
     SidebarMenu,
 } from "@/components/ui/sidebar"
-import { Key, Settings, Search, Code, Lock } from "lucide-react"
+import { Key, Settings, Search, Code, Lock, LucideIcon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import dragonballIcon from '@/public/dragonball.svg'
 
-const items = [
+interface IconProps {
+    className?: string;
+}
+
+type IconType = LucideIcon | React.FC<IconProps>;
+
+interface SidebarItem {
+    title: string;
+    url: string;
+    icon: IconType;
+    requiresPro?: boolean;
+}
+
+const CustomDragonballIcon: React.FC<IconProps> = ({ className }) => (
+    <Image src={dragonballIcon} alt="DragonBall" width={16} height={16} className={className} />
+);
+
+const items: SidebarItem[] = [
     {
         title: "Generate API Key",
         url: "/dashboard",
@@ -23,7 +41,7 @@ const items = [
     {
         title: "DragonBall API",
         url: "/dragonball",
-        icon: Search,
+        icon: CustomDragonballIcon,
         requiresPro: true
     },
     {
@@ -81,7 +99,8 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     `}
                                     style={{ letterSpacing: '-0.01em' }}
                                 >
-                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />                                    <span>{item.title}</span>
+                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
+                                    <span>{item.title}</span>
                                     {item.url === '/dragonball' && (
                                         <Badge variant="new" className="ml-2">NEW</Badge>
                                     )}

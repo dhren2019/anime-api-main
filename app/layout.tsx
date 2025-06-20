@@ -34,7 +34,10 @@ export const metadata: Metadata = {
     images: ["/anime-platform.webp"]
   },
   icons: {
-    icon: "/favicon.ico"
+    icon: {
+      url: "/gibli.svg",
+      type: "image/svg+xml"
+    }
   }
 };
 
