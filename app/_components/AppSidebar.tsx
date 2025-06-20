@@ -9,6 +9,7 @@ import {
     SidebarMenu,
 } from "@/components/ui/sidebar"
 import { Key, Settings, Search, Code, Lock } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
@@ -18,6 +19,12 @@ const items = [
         title: "Generate API Key",
         url: "/dashboard",
         icon: Key,
+    },
+    {
+        title: "DragonBall API",
+        url: "/dragonball",
+        icon: Search,
+        requiresPro: true
     },
     {
         title: "Buscar Anime",
@@ -74,8 +81,10 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     `}
                                     style={{ letterSpacing: '-0.01em' }}
                                 >
-                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
-                                    <span>{item.title}</span>
+                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />                                    <span>{item.title}</span>
+                                    {item.url === '/dragonball' && (
+                                        <Badge variant="new" className="ml-2">NEW</Badge>
+                                    )}
                                     {item.requiresPro && !isPro && (
                                         <Lock className="h-4 w-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" />
                                     )}
