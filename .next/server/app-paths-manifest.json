@@ -1,7 +1,6 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
-  "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
+  "/api/v1/anime/route": "app/api/v1/anime/route.js",
+  "/api/keys/route": "app/api/keys/route.js",
   "/(routes)/search/page": "app/(routes)/search/page.js",
-  "/(routes)/dragonball/page": "app/(routes)/dragonball/page.js"
+  "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js"
 }
