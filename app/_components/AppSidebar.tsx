@@ -8,7 +8,7 @@ import {
     SidebarHeader,
     SidebarMenu,
 } from "@/components/ui/sidebar"
-import { Key, Settings, Search, Code, Lock, LucideIcon } from "lucide-react"
+import { Key, Settings, Search, Code, Lock, LucideIcon, FileText } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -34,7 +34,7 @@ const CustomDragonballIcon: React.FC<IconProps> = ({ className }) => (
 
 const items: SidebarItem[] = [
     {
-        title: "Generate API Key",
+        title: "Generar Clave API",
         url: "/dashboard",
         icon: Key,
     },
@@ -54,9 +54,13 @@ const items: SidebarItem[] = [
         url: "/snippets",
         icon: Code,
         requiresPro: true
+    },    {
+        title: "Documentación",
+        url: "/docs",
+        icon: FileText,
     },
     {
-        title: "Settings",
+        title: "Configuración",
         url: "/settings",
         icon: Settings,
     },
@@ -79,7 +83,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                 <div className='p-4'>
                     <Image src={'/logo.svg'} alt='logo' width={100} height={100}
                         className='w-full h-full' />
-                    <h2 className='text-sm text-gray-400 text-center'>Anime API Platform</h2>
+                    <h2 className='text-sm text-gray-400 text-center'>Plataforma de API de Anime</h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>
@@ -102,7 +106,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
                                     <span>{item.title}</span>
                                     {item.url === '/dragonball' && (
-                                        <Badge variant="new" className="ml-2">NEW</Badge>
+                                        <Badge variant="new" className="ml-2">NUEVO</Badge>
                                     )}
                                     {item.requiresPro && !isPro && (
                                         <Lock className="h-4 w-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" />
@@ -118,7 +122,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                     <div className="bg-gradient-to-r from-violet-600 via-blue-500 to-indigo-400 rounded-xl p-4 flex flex-col items-center shadow-lg">
                         {plan === 'free' ? (
                             <>
-                                <span className="text-white font-bold text-lg mb-2">Upgrade to pro</span>
+                                <span className="text-white font-bold text-lg mb-2">Actualizar a pro</span>
                                 <span className="text-white text-xs mb-3 text-center opacity-80">Desbloquea 150 peticiones al mes y soporte premium</span>
                                 <div className="w-full mb-3">
                                     <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
@@ -130,7 +134,7 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                             </>
                         ) : (
                             <>
-                                <span className="text-white font-bold text-lg mb-2">API usage</span>
+                                <span className="text-white font-bold text-lg mb-2">Uso de API</span>
                                 <div className="w-full mb-3">
                                     <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
                                         <div className="h-2 bg-white rounded-full transition-all" style={{ width: `${Math.min(100, Math.round((requestsCount / 150) * 100))}%` }}></div>

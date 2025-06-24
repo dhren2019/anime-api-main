@@ -26,7 +26,7 @@ export function PlanetDetails({ isOpen, onClose, planet }: PlanetDetailsProps) {
               className="object-contain w-full h-full rounded-lg"
             />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
               <h3 className="text-xl font-semibold text-yellow-500">Planet Info</h3>
               <div className="mt-2 space-y-2">
@@ -34,11 +34,11 @@ export function PlanetDetails({ isOpen, onClose, planet }: PlanetDetailsProps) {
                   <p className="text-red-500 font-semibold">Status: Destroyed</p>
                 )}
                 {planet.description && (
-                  <p className="text-gray-300">
+                  <div className="text-gray-300 max-h-[50vh] overflow-y-auto pr-2">
                     {planet.isDestroyed 
                       ? planet.description
                       : planet.description.replace(/\s*0\s*$/, '')}
-                  </p>
+                  </div>
                 )}
               </div>
             </div>

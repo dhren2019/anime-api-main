@@ -30,7 +30,7 @@ export function CharacterDetails({ isOpen, onClose, character }: CharacterDetail
               className="object-contain w-full h-full rounded-lg"
             />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
               <h3 className="text-xl font-semibold text-yellow-500">Character Info</h3>
               <div className="mt-2 space-y-2">
@@ -44,7 +44,7 @@ export function CharacterDetails({ isOpen, onClose, character }: CharacterDetail
             {character.description && (
               <div className="bg-gray-800 p-4 rounded-lg">
                 <h3 className="text-xl font-semibold text-yellow-500">Description</h3>
-                <p className="mt-2 text-gray-300">{character.description}</p>
+                <div className="mt-2 text-gray-300 max-h-[50vh] overflow-y-auto pr-2">{character.description}</div>
               </div>
             )}
           </div>

@@ -26,7 +26,7 @@ export function TransformationDetails({ isOpen, onClose, transformation }: Trans
               className="object-contain w-full h-full rounded-lg"
             />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
               <h3 className="text-xl font-semibold text-yellow-500">Transformation Info</h3>
               <div className="mt-2 space-y-2">
