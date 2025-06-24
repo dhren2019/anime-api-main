@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface Anime {
   id: number;
@@ -38,25 +39,17 @@ export function AnimeDetails({ anime, isOpen, onClose }: AnimeDetailsProps) {
         </DialogHeader>
         
         <div className="p-6 pt-0 grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
-          <div className="space-y-6">
-            <div className="aspect-[3/4] relative rounded-xl overflow-hidden shadow-lg bg-gray-100">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
-              {(anime.picture || anime.thumbnail) ? (
-                <img
-                  src={anime.picture || anime.thumbnail}
-                  alt={anime.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = '/placeholder-anime.jpg';
-                  }}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                  <span className="text-gray-400">No image</span>
-                </div>
-              )}
+          <div className="space-y-6">            <div className="aspect-[3/4] relative rounded-xl overflow-hidden shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
+              <OptimizedImage
+                src={anime.picture || anime.thumbnail || '/placeholder-anime.jpg'}
+                alt={anime.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 300px"
+                priority
+                quality={90}
+                className="transform transition-transform duration-500 hover:scale-105"
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border dark:border-gray-700">

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { AnimeDetails } from "../../../components/ui/anime-details";
+import { OptimizedImage } from "../../../components/ui/optimized-image";
 
 interface Anime {
   id: number;
@@ -152,26 +153,17 @@ export default function AnimeSearchPage() {
                     setSelectedAnime(anime);
                   }
                 }}
-              >
-                <div className="aspect-[3/4] relative w-full overflow-hidden rounded-t-lg bg-gray-100">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                  {(anime.thumbnail || anime.picture) ? (
-                    <img
-                      src={anime.thumbnail || anime.picture}
-                      alt={anime.title}
-                      className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
-                      loading="lazy"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.src = '/placeholder-anime.jpg';
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                      <span className="text-gray-400">No image</span>
-                    </div>
-                  )}
+              >                <div className="aspect-[3/4] relative w-full overflow-hidden rounded-t-lg shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                  <OptimizedImage
+                    src={anime.picture || anime.thumbnail || '/placeholder-anime.jpg'}
+                    alt={anime.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    className="transition-transform duration-300 group-hover:scale-105"
+                    quality={90}
+                    priority={results.indexOf(anime) < 6} // Priorizar las primeras 6 imágenes
+                  />
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold truncate mb-1">{anime.title}</h3>
