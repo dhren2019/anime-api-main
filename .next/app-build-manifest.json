@@ -35,6 +35,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/v1/anime/route.js"
+    ],
+    "/(routes)/dragonball/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/dragonball/layout.js"
+    ],
+    "/(routes)/dragonball/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/dragonball/page.js"
+    ],
+    "/api/dragonball/characters/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/dragonball/characters/route.js"
     ]
   }
 }
