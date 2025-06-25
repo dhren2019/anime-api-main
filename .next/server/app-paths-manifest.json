@@ -1,12 +1,7 @@
 {
-  "/api/keys/route": "app/api/keys/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/user/route": "app/api/user/route.js",
-  "/api/dragonball/characters/route": "app/api/dragonball/characters/route.js",
   "/page": "app/page.js",
   "/(routes)/docs/page": "app/(routes)/docs/page.js",
-  "/(routes)/snippets/page": "app/(routes)/snippets/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
-  "/(routes)/dragonball/page": "app/(routes)/dragonball/page.js",
-  "/(routes)/search/page": "app/(routes)/search/page.js"
+  "/(routes)/search/page": "app/(routes)/search/page.js",
+  "/(routes)/dragonball/page": "app/(routes)/dragonball/page.js"
 }

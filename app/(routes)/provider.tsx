@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import axios from "axios";
 import AppHeader from '../_components/AppHeader';
 import { AppSidebar } from '../_components/AppSidebar';
+import { ChatBubble } from '@/components/chatbot/ChatBubble';
 
 function DashboardProvider({
     children,
@@ -30,9 +31,7 @@ function DashboardProvider({
             } catch {}
         }
         fetchApiKeys();
-    }, []);
-
-    return (
+    }, []);    return (
         <SidebarProvider>
             <AppSidebar requestsCount={mainKey.requestsCount} requestsLimit={mainKey.requestsLimit} plan={mainKey.plan} />
             <main className='w-full'>
@@ -40,8 +39,9 @@ function DashboardProvider({
                 {/* <SidebarTrigger /> */}
                 <div className='p-10'>{children}</div>
             </main>
+            {/* Chat flotante solo para usuarios PRO */}
+            <ChatBubble isPro={mainKey.plan === 'pro'} />
         </SidebarProvider>
-
     )
 }
 
