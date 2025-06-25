@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/configs/db';
 import { apiKeysTable } from '@/configs/schema';
-import { randomBytes } from 'crypto';
 
-// Generate a secure API key
-function generateApiKey() {
-  return `sk-${randomBytes(24).toString('hex')}`;
+// Generate a secure API key using Web Crypto API
+async function generateApiKey() {
+  const array = new Uint8Array(24);
+  crypto.getRandomValues(array);
+  return `sk-${Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('')}`;
 }
 
 // Mark this route as not requiring authentication
@@ -23,7 +24,7 @@ export async function GET() {
     const apiKey = await db.insert(apiKeysTable).values({
       userId: 1,
       name: 'Test Key',
-      key: generateApiKey(),
+      key: await generateApiKey(),
       isActive: true
     }).returning();
     

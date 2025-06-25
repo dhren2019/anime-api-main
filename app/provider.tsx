@@ -2,6 +2,7 @@
 import { AuthContext } from '@/context/AuthContext';
 import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
+import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react'
 
 function Provider({
@@ -32,10 +33,25 @@ function Provider({
             setIsCreatingUser(false);
         }
     }
-
-    // Si Clerk aún no ha cargado, mostramos un estado de carga
+    
+    // Si Clerk aún no ha cargado, mostramos un estado de carga con un gif de Goku
     if (!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+                <div className="w-80 h-80 mb-6 relative">
+                    <Image
+                        src="/goku.gif"
+                        alt="Cargando"
+                        fill
+                        priority
+                        className="object-contain"
+                        style={{ imageRendering: 'pixelated' }}
+                        unoptimized
+                    />
+                </div>
+                <p className="text-lg font-medium text-gray-700 dark:text-gray-300 animate-pulse">Cargando...</p>
+            </div>
+        );
     }
 
     return (

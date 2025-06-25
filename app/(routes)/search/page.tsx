@@ -1,5 +1,8 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import { AnimeDetails } from "../../../components/ui/anime-details";
+import { OptimizedImage } from "../../../components/ui/optimized-image";
 
 interface Anime {
   id: number;
@@ -10,6 +13,10 @@ interface Anime {
   animeSeason?: string;
   picture?: string;
   thumbnail?: string;
+  sources?: string[];
+  synonyms?: string[];
+  relations?: string[];
+  tags?: string[];
 }
 
 export default function AnimeSearchPage() {
@@ -21,6 +28,7 @@ export default function AnimeSearchPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showUpgrade, setShowUpgrade] = useState(false);
+  const [selectedAnime, setSelectedAnime] = useState<Anime | null>(null);
 
   const validateKey = async () => {
     setError(null);
@@ -63,6 +71,7 @@ export default function AnimeSearchPage() {
       }
       if (!res.ok) throw new Error("Error buscando animes");
       const data = await res.json();
+      console.log('Resultados de búsqueda:', data.animes); // Para debuggear
       setResults(data.animes || []);
     } catch (e) {
       setError("No se pudo buscar animes.");
@@ -72,11 +81,10 @@ export default function AnimeSearchPage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Buscar Anime</h1>
+    <div className="max-w-4xl mx-auto p-4">
       {!isValid ? (
         <div>
-          <label className="block mb-2 font-medium">Introduce tu API key para acceder al buscador:</label>
+          <label className="block mb-2 font-medium">API Key:</label>
           <input
             type="text"
             className="w-full border rounded px-3 py-2 mb-2 font-mono"
@@ -129,22 +137,61 @@ export default function AnimeSearchPage() {
       )}
       {results.length > 0 && (
         <div className="mt-6">
-          <h2 className="font-semibold mb-2">Resultados:</h2>
-          <ul>
+          <h2 className="font-semibold mb-4 text-xl">Resultados:</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {results.map(anime => (
-              <li key={anime.id} className="mb-2 p-2 border rounded flex items-center gap-3">
-                {anime.thumbnail && (
-                  <img src={anime.thumbnail} alt={anime.title} className="w-12 h-12 object-cover rounded" />
-                )}
-                <div>
-                  <div className="font-bold">{anime.title}</div>
-                  <div className="text-xs text-gray-500">{anime.type} | {anime.status}</div>
+              <div
+                key={anime.id}
+                className="group border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200 cursor-pointer bg-white hover:border-blue-400 hover:-translate-y-1"
+                onClick={() => {
+                  setSelectedAnime(anime);
+                }}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setSelectedAnime(anime);
+                  }
+                }}
+              >                <div className="aspect-[3/4] relative w-full overflow-hidden rounded-t-lg shadow-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                  <OptimizedImage
+                    src={anime.picture || anime.thumbnail || '/placeholder-anime.jpg'}
+                    alt={anime.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                    className="transition-transform duration-300 group-hover:scale-105"
+                    quality={90}
+                    priority={results.indexOf(anime) < 6} // Priorizar las primeras 6 imágenes
+                  />
                 </div>
-              </li>
+                <div className="p-4">
+                  <h3 className="font-semibold truncate mb-1">{anime.title}</h3>
+                  <div className="flex gap-2">
+                    {anime.type && (
+                      <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                        {anime.type}
+                      </span>
+                    )}
+                    {anime.status && (
+                      <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                        {anime.status}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
+
+      <AnimeDetails
+        anime={selectedAnime}
+        isOpen={selectedAnime !== null}
+        onClose={() => setSelectedAnime(null)}
+      />
+
       {showUpgrade && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40">
           <div className="bg-white p-6 rounded shadow-lg max-w-[90vw] w-[400px] relative text-center">
@@ -159,4 +206,4 @@ export default function AnimeSearchPage() {
       )}
     </div>
   );
-} 
+}

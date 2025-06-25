@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image";
+import Head from "next/head";
 
-import { SignIn, SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
   // const user = useAuthContext();
@@ -10,141 +11,188 @@ export default function Home() {
   const { user } = useUser();
 
   return (
-    <div>
-      <header className="flex  flex-wrap sm:justify-start  sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-0 dark:bg-neutral-800 dark:border-neutral-700">
-        <nav className="relative  p-4 max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
-          <div className="flex items-center justify-between">
-            <div>
-              <Image src={'/logo.svg'} alt="logo" width={150} height={150} />
-            </div>
-          </div>
-          <div id="navbar-collapse-with-animation" className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end sm:ps-7 cursor-pointer">
+    <div className="min-h-screen flex flex-col bg-[#111827] text-white">
+      <Head>
+        <title>Anime API Platform - La API de Anime para desarrolladores</title>
+        <meta name="description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
+        <meta property="og:title" content="Anime API Platform - La API de Anime para desarrolladores" />
+        <meta property="og:description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Anime API Platform - La API de Anime para desarrolladores" />
+        <meta name="twitter:description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
+        <meta name="twitter:image" content="/og-image.png" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-              {/* Clerk Authentication  */}
-              {!user ? <SignInButton mode='modal' signUpForceRedirectUrl={'/dashboard'}>
-                <div className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 py-2 sm:py-0 sm:ms-4 sm:my-6 sm:ps-6 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-blue-500" >
-                  <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                  </svg>
-                  Get Started
+      {/* Header */}
+      <header className="flex justify-between items-center px-8 py-5 max-w-[1200px] w-full mx-auto">
+        <div className="flex items-center gap-3">
+          {/* <Image src={'/logo.svg'} alt="logo" width={56} height={56} /> */}
+          <span className="font-extrabold text-2xl tracking-tight text-white">Anime API Platform</span>
                 </div>
+        <div>
+          {!user ? (
+            <SignInButton mode='modal' signUpForceRedirectUrl={'/dashboard'}>
+              <button className="bg-[#FF640A] text-white px-5 py-2 rounded font-bold shadow hover:bg-orange-500 transition">Iniciar sesión</button>
               </SignInButton>
-                :
+          ) : (
                 <UserButton />
-              }
-            </div>
+          )}
           </div>
-        </nav>
       </header>
-      <div className="relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:-z-[1] before:transform before:-translate-x-1/2">
-        <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
 
-          <div className="flex justify-center">
-            <a className="inline-flex items-center gap-x-2 bg-white border border-gray-200 text-sm text-gray-800 p-1 ps-3 rounded-full transition hover:border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:border-neutral-600 dark:text-neutral-200"
-              href="tubeguruji.com" target="_blank">
-              TUBEGURUJI Membership - Join Now
-              <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-gray-200 font-semibold text-sm text-gray-600 dark:bg-neutral-700 dark:text-neutral-400">
-                <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-              </span>
-            </a>
-          </div>
-
-
-
-          <div className="mt-5 max-w-2xl text-center mx-auto">
-            <h1 className="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-neutral-200">
-              Build Something
-              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"> With NextJs</span>
-            </h1>
-          </div>
-
-
-          <div className="mt-5 max-w-3xl text-center mx-auto">
-            <p className="text-lg text-gray-600 dark:text-neutral-400">
-              Revolutionize your content creation with our AI-powered app, delivering engaging and high-quality apps in seconds.</p>
-          </div>
-
-
-          <div className="mt-8 gap-3 flex justify-center">
-            <a className="inline-flex justify-center items-center 
-      gap-x-3 text-center bg-gradient-to-tl from-blue-600
-       to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent cursor-pointer text-white text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 py-3 px-4 dark:focus:ring-offset-gray-800"
-              href="/dashboard">
-              Get started
-              <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-            </a>
-
-          </div>
-
-
-
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between max-w-[1200px] w-full mx-auto px-8 pt-8 gap-10">
+        <div className="flex-1 text-left">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+            <span className="text-[#FF640A]">La API de Anime</span> para creadores, bots y apps modernas
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl">
+            Accede a <span className="text-[#FF640A] font-bold">más de 38,000 animes</span>, películas y OVAs con datos actualizados, imágenes y metadatos.<br />
+            <span className="text-white font-semibold">Potencia tu proyecto con la API más fácil y potente del mundo otaku.</span>
+          </p>
+          <a
+            href="/dashboard"
+            className="inline-block bg-[#FF640A] text-white px-8 py-3 rounded-lg font-bold text-lg shadow-lg hover:scale-105 transition-transform"
+          >
+            Consigue tu API Key Gratis
+          </a>
+          <div className="mt-4 text-gray-400 text-sm">Sin tarjeta de crédito. Empieza en segundos.</div>
         </div>
-      </div>
-
-
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-2">
-
-          <a className="group flex flex-col justify-center hover:bg-gray-50 rounded-xl p-4 md:p-7 dark:hover:bg-neutral-800" href="#">
-            <div className="flex justify-center items-center size-12 bg-blue-600 rounded-xl">
-              <svg className="flex-shrink-0 size-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="10" height="14" x="3" y="8" rx="2" /><path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" /><path d="M8 18h.01" /></svg>
-            </div>
-            <div className="mt-5">
-              <h3 className="group-hover:text-gray-600 text-lg font-semibold text-gray-800 dark:text-white dark:group-hover:text-gray-400">25+ templates</h3>
-              <p className="mt-1 text-gray-600 dark:text-neutral-400">Responsive, and mobile-first project on the web</p>
-              <span className="mt-2 inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 group-hover:underline font-medium">
-                Learn more
-                <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-              </span>
-            </div>
-          </a>
-
-          <a className="group flex flex-col justify-center hover:bg-gray-50 rounded-xl p-4 md:p-7 dark:hover:bg-neutral-800" href="#">
-            <div className="flex justify-center items-center size-12 bg-blue-600 rounded-xl">
-              <svg className="flex-shrink-0 size-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7h-9" /><path d="M14 17H5" /><circle cx="17" cy="17" r="3" /><circle cx="7" cy="7" r="3" /></svg>
-            </div>
-            <div className="mt-5">
-              <h3 className="group-hover:text-gray-600 text-lg font-semibold text-gray-800 dark:text-white dark:group-hover:text-gray-400">Customizable</h3>
-              <p className="mt-1 text-gray-600 dark:text-neutral-400">Components are easily customized and extendable</p>
-              <span className="mt-2 inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 group-hover:underline font-medium">
-                Learn more
-                <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-              </span>
-            </div>
-          </a>
-
-          <a className="group flex flex-col justify-center hover:bg-gray-50 rounded-xl p-4 md:p-7 dark:hover:bg-neutral-800" href="#">
-            <div className="flex justify-center items-center size-12 bg-blue-600 rounded-xl">
-              <svg className="flex-shrink-0 size-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
-            </div>
-            <div className="mt-5">
-              <h3 className="group-hover:text-gray-600 text-lg font-semibold text-gray-800 dark:text-white dark:group-hover:text-gray-400">Free to Use</h3>
-              <p className="mt-1 text-gray-600 dark:text-neutral-400">Every component and plugin is well documented</p>
-              <span className="mt-2 inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 group-hover:underline font-medium">
-                Learn more
-                <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-              </span>
-            </div>
-          </a>
-
-          <a className="group flex flex-col justify-center hover:bg-gray-50 rounded-xl p-4 md:p-7 dark:hover:bg-neutral-800" href="#">
-            <div className="flex justify-center items-center size-12 bg-blue-600 rounded-xl">
-              <svg className="flex-shrink-0 size-6 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z" /><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" /></svg>
-            </div>
-            <div className="mt-5">
-              <h3 className="group-hover:text-gray-600 text-lg font-semibold text-gray-800 dark:text-white dark:group-hover:text-gray-400">24/7 Support</h3>
-              <p className="mt-1 text-gray-600 dark:text-neutral-400">Contact us 24 hours a day, 7 days a week</p>
-              <span className="mt-2 inline-flex items-center gap-x-1.5 text-sm text-blue-600 decoration-2 group-hover:underline font-medium">
-                Learn more
-                <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-              </span>
-            </div>
-          </a>
-
+        <div className="flex-1 flex flex-col items-center">
+          <div className="rounded-xl overflow-hidden shadow-lg w-full max-w-md mb-4">
+            <video src="/naruto-1.mp4" autoPlay loop muted playsInline className="w-full h-[260px] object-cover" poster="/streamingbanner-2.webp" />
+          </div>
         </div>
-      </div>
+      </section>
 
+      {/* Logos de confianza */}
+      <section className="max-w-[1200px] w-full mx-auto flex flex-wrap justify-center items-center gap-16 py-10">
+        <Image src="/Amazon.svg" alt="Amazon" width={90} height={40} className="object-contain" />
+        <Image src="/Netflix.svg" alt="Netflix" width={90} height={40} className="object-contain" />
+        <Image src="/Spotify.svg" alt="Spotify" width={90} height={40} className="object-contain" />
+        <Image src="/Uber.svg" alt="Uber" width={90} height={40} className="object-contain" />
+      </section>
+
+      {/* Beneficios para desarrolladores */}
+      <section className="max-w-[1200px] w-full mx-auto mt-20 flex flex-col md:flex-row items-center gap-16 px-8">
+        <div className="flex-1 flex justify-center">
+          <Image src="/anime-platform.webp" alt="Beneficios para desarrolladores" width={420} height={260} className="rounded-lg shadow-2xl w-full object-cover" />
+          </div>
+        <div className="flex-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#FF640A]">Pensada para desarrolladores</h2>
+          <ul className="text-gray-200 text-lg space-y-3 mb-4 list-disc list-inside">
+            <li><b>+38,000 animes</b> con endpoints rápidos y flexibles</li>
+            <li>Documentación clara y ejemplos listos para usar</li>
+            <li>Autenticación sencilla con API Key</li>
+            <li>Filtros avanzados por tipo, estado, tags y más</li>
+            <li>Perfecta para bots, apps móviles, dashboards y proyectos comerciales</li>
+          </ul>
+          <div className="text-gray-400 text-base">Únete a cientos de devs que ya integran Anime API Platform en sus proyectos.</div>
+          </div>
+      </section>
+
+      {/* Plataformas compatibles y ejemplo de integración */}
+      <section className="max-w-[1200px] w-full mx-auto mt-20 mb-20 px-8 flex flex-col md:flex-row items-center gap-16">
+        <div className="flex-1 order-2 md:order-1">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#FF640A]">Úsala en cualquier plataforma</h2>
+          <ul className="text-gray-200 text-lg space-y-3 mb-4 list-disc list-inside">
+            <li>Web, móvil, bots de Discord, Telegram, apps de escritorio y más</li>
+            <li>Fácil integración con cualquier lenguaje o framework</li>
+            <li>Respuestas en JSON listas para consumir</li>
+          </ul>
+          <div className="bg-[#181F2A] rounded-lg p-4 text-sm font-mono text-[#FF640A] border border-[#232B3A] mb-2">
+            {`GET https://animeapi.dev/api/v1/anime?title=naruto`}
+            <br />
+            {`{
+  "title": "Naruto",
+  "episodes": 220,
+  "type": "TV",
+  "status": "Finished",
+  ...
+}`}
+          </div>
+          <div className="text-gray-400 text-base">Crea tu propia plataforma de anime en minutos.</div>
+        </div>
+        <div className="flex-1 flex justify-center order-1 md:order-2">
+          <Image src="/streamingbanner-2.webp" alt="Plataformas compatibles" width={600} height={260} className="rounded-lg shadow-2xl w-full object-cover" />
+      </div>
+      </section>
+
+      {/* Beneficios */}
+      <section className="max-w-[1200px] w-full mx-auto mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 px-8">
+        <div className="bg-[#181F2A] rounded-xl shadow p-7 flex flex-col items-center border border-[#232B3A]">
+          <span className="text-4xl mb-3">⚡</span>
+          <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Ultra rápida y estable</h3>
+          <p className="text-gray-300 text-base text-center">Infraestructura cloud, baja latencia y alta disponibilidad para tus proyectos.</p>
+            </div>
+        <div className="bg-[#181F2A] rounded-xl shadow p-7 flex flex-col items-center border border-[#232B3A]">
+          <span className="text-4xl mb-3">🔄</span>
+          <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Datos siempre actualizados</h3>
+          <p className="text-gray-300 text-base text-center">Información de anime, imágenes y metadatos sincronizados a diario.</p>
+            </div>
+        <div className="bg-[#181F2A] rounded-xl shadow p-7 flex flex-col items-center border border-[#232B3A]">
+          <span className="text-4xl mb-3">🛠️</span>
+          <h3 className="font-bold mb-2 text-lg text-[#FF640A]">Integración instantánea</h3>
+          <p className="text-gray-300 text-base text-center">Documentación clara y ejemplos para cualquier lenguaje y plataforma.</p>
+            </div>
+      </section>
+
+      {/* Sección PRO */}
+      <section className="max-w-[900px] w-full mx-auto mt-20 mb-16 px-8">
+        <div className="bg-gradient-to-tr from-[#181F2A] to-[#232B3A] rounded-2xl shadow-xl p-10 text-center border border-[#232B3A]">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#FF640A] mb-4">¿Por qué hacerse PRO?</h2>
+          <div className="text-gray-300 text-base mb-4">Accede a miles de datos por lo que cuesta un café</div>
+          <ul className="text-gray-200 text-left max-w-md mx-auto mb-6 list-disc list-inside space-y-2">
+            <li>🔓 <b>Más peticiones por minuto</b> y límites ampliados</li>
+            <li>📈 <b>Acceso prioritario</b> a nuevas features y endpoints</li>
+            <li>💬 <b>Soporte premium</b> y canal privado de Discord</li>
+            <li>🚀 <b>Ideal para bots, apps y proyectos comerciales</b></li>
+          </ul>
+          <a
+            href="/dashboard"
+            className="inline-block mt-2 bg-[#FF640A] text-white px-8 py-3 rounded font-semibold shadow hover:bg-orange-500 transition"
+          >
+            Hazte PRO y lleva tu proyecto al siguiente nivel
+          </a>
+            </div>
+      </section>
+
+      {/* Showcase de dispositivos */}
+      <section className="max-w-[1200px] w-full mx-auto mb-20 px-8 flex flex-col items-center">
+        <h3 className="text-2xl font-bold text-[#FF640A] mb-6">Compatible con cualquier plataforma</h3>
+        <Image src="/anime-box-smart-tv.png" alt="Anime en todos tus dispositivos" width={900} height={300} className="rounded-xl shadow-2xl w-full object-contain" />
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-[900px] w-full mx-auto mb-12 px-8">
+        <h3 className="text-xl font-bold text-[#FF640A] mb-4 text-center">Preguntas frecuentes</h3>
+        <div className="space-y-4">
+          <details className="bg-[#181F2A] rounded shadow p-5 border border-[#232B3A]">
+            <summary className="font-semibold cursor-pointer text-white">¿Cómo obtengo mi API key?</summary>
+            <div className="mt-2 text-gray-300">Regístrate o inicia sesión, accede al dashboard y genera tu API key gratis en segundos.</div>
+          </details>
+          <details className="bg-[#181F2A] rounded shadow p-5 border border-[#232B3A]">
+            <summary className="font-semibold cursor-pointer text-white">¿Puedo usar la API gratis?</summary>
+            <div className="mt-2 text-gray-300">Sí, puedes empezar gratis. Si necesitas más límites o funciones avanzadas, puedes hacerte PRO.</div>
+          </details>
+          <details className="bg-[#181F2A] rounded shadow p-5 border border-[#232B3A]">
+            <summary className="font-semibold cursor-pointer text-white">¿Qué datos ofrece la API?</summary>
+            <div className="mt-2 text-gray-300">Títulos, imágenes, sinopsis, temporadas, episodios, tipo, estado, tags y más de miles de animes.</div>
+          </details>
+          <details className="bg-[#181F2A] rounded shadow p-5 border border-[#232B3A]">
+            <summary className="font-semibold cursor-pointer text-white">¿Cómo integro la API en mi app?</summary>
+            <div className="mt-2 text-gray-300">Consulta la documentación y ejemplos en el dashboard. Es fácil de usar desde cualquier lenguaje.</div>
+          </details>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#181F2A] py-8 text-center text-gray-400 text-sm border-t border-[#232B3A] mt-auto">
+        <div>© {new Date().getFullYear()} Anime API Platform. Hecho con <span className="text-[#FF640A]">❤️</span> para la comunidad otaku.</div>
+      </footer>
     </div>
   );
 }

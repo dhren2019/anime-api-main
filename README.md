@@ -249,3 +249,117 @@ Puedes buscar por cualquier título parcial o completo usando el parámetro `que
 ## Notas
 - Las API keys solo se muestran completas una vez por seguridad.
 - Si tienes problemas con la autenticación o la API key, revisa la configuración del middleware y las rutas públicas/privadas.
+
+## Configuración de Stripe Webhooks
+Para que la aplicación reciba notificaciones de eventos de Stripe (como la finalización de una compra), se utiliza un webhook.
+
+1.  **Endpoint del Webhook:** El endpoint en tu aplicación es `/api/stripe/webhook`.
+2.  **Manejo de Eventos:** Cuando una sesión de checkout de Stripe se completa (`checkout.session.completed`), este webhook se encarga de:
+    -   Buscar al usuario en la base de datos.
+    -   Si el usuario ya tiene una API Key, su plan se actualiza a 'pro' con un límite de 150 solicitudes.
+    -   Si el usuario no tiene una API Key, se le genera una nueva clave API automáticamente con el plan 'pro' y un límite de 150 solicitudes.
+3.  **Para probar webhooks localmente (Stripe CLI):**
+    -   Asegúrate de tener la [Stripe CLI](https://stripe.com/docs/stripe-cli) instalada y configurada.
+    -   **Autenticar Stripe CLI:** Primero, inicia sesión en tu cuenta de Stripe desde la CLI:
+        ```bash
+        stripe login
+        ```
+    -   Ejecuta el siguiente comando en tu terminal para reenviar eventos de Stripe a tu entorno local:
+    ```bash
+    stripe listen --forward-to localhost:3000/api/stripe/webhook
+    ```
+    -   La Stripe CLI te proporcionará un `webhook signing secret` (generalmente comienza con `whsec_`). Asegúrate de añadirlo a tu archivo `.env` como `STRIPE_WEBHOOK_SECRET`.
+    ```env
+    STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+    ```
+
+## Limpieza de Cachés
+Si experimentas problemas de compilación o datos desactualizados, puede ser útil limpiar las cachés del proyecto.
+
+1.  **Eliminar cachés de Next.js:**
+    ```bash
+    rm -rf .next
+    ```
+2.  **Eliminar módulos de node y caché de npm/yarn (opcional, para una limpieza profunda):**
+    ```bash
+    rm -rf node_modules
+    rm -f package-lock.json yarn.lock
+    ```
+3.  **Reinstalar dependencias (si eliminaste `node_modules`):**
+    ```bash
+    npm install # o yarn install
+    ```
+4.  **Reiniciar el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+## Despliegue en Producción
+
+### 1. Prepara las variables de entorno
+Asegúrate de tener un archivo `.env` con las siguientes variables configuradas para producción:
+
+```
+NEXT_PUBLIC_NEON_DB_CONNECTION_STRING=tu_cadena_de_conexion_produccion
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=tu_clerk_publishable_key
+CLERK_SECRET_KEY=tu_clerk_secret_key
+STRIPE_SECRET_KEY=tu_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=tu_stripe_webhook_secret
+NEXT_PUBLIC_BASE_URL=https://tudominio.com
+```
+
+- Cambia los valores por los de tu entorno real (Neon, Clerk, Stripe, etc).
+- `NEXT_PUBLIC_BASE_URL` debe ser la URL pública de tu app (por ejemplo, `https://animeapi.dev`).
+
+### 2. Configura la base de datos
+- Asegúrate de que tu base de datos (por ejemplo, Neon.tech o PostgreSQL en la nube) esté accesible desde el entorno de producción.
+- Aplica todas las migraciones:
+  ```bash
+  npx drizzle-kit push
+  ```
+- Si necesitas importar datos de anime:
+  ```bash
+  npm run import-anime
+  ```
+
+### 3. Configura Clerk y Stripe
+- En Clerk, añade tu dominio de producción en el dashboard de Clerk (para permitir el login desde tu dominio).
+- En Stripe, configura los webhooks para que apunten a `https://tudominio.com/api/stripe/webhook`.
+- Añade las claves secretas de Clerk y Stripe en las variables de entorno.
+
+### 4. Build de la app para producción
+- Ejecuta:
+  ```bash
+  npm run build
+  ```
+- Esto generará la carpeta `.next` lista para producción.
+
+### 5. Inicia la app en modo producción
+- Ejecuta:
+  ```bash
+  npm run start
+  ```
+- Por defecto, Next.js usará el puerto 3000. Puedes cambiarlo con la variable de entorno `PORT`.
+
+### 6. Hosting recomendado
+Puedes desplegar la app en:
+- **Vercel** (recomendado para Next.js, integración directa, fácil despliegue y variables de entorno desde el dashboard)
+- **Railway**, **Render**, **Heroku** o cualquier VPS con Node.js 18+
+- Si usas Vercel:
+  - Sube el proyecto a GitHub.
+  - Conecta el repo en Vercel y configura las variables de entorno en el dashboard.
+  - Vercel se encarga del build y el despliegue automático.
+
+### 7. Archivos públicos y SEO
+- Asegúrate de que las imágenes importantes (favicon, Open Graph, etc.) estén en la carpeta `public`.
+- Revisa que el dominio esté bien configurado en Clerk y Stripe.
+
+### 8. Seguridad y comprobaciones finales
+- Usa HTTPS en producción.
+- Revisa los logs de la app y de la base de datos.
+- Prueba el flujo de registro, login, generación de API key y endpoints protegidos.
+- Prueba el webhook de Stripe (puedes usar Stripe CLI para simular eventos).
+
+---
+
+Si tienes dudas sobre el despliegue en un proveedor específico, consulta la documentación oficial de Next.js o pregunta en la comunidad.

@@ -1,4 +1,4 @@
-// File: /Users/rodrigoglodosindo/Desktop/anime-api-main/app/layout.tsx
+// File: C:\Users\RODRIGO\Desktop\anime-api-main\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
