@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/mysql';
 import { RowDataPacket } from 'mysql2';
+import { validateAndCountApiKey } from '../auth-requests';
 
 interface Character extends RowDataPacket {
     id: number;
@@ -9,6 +10,9 @@ interface Character extends RowDataPacket {
 }
 
 export async function GET(request: Request) {
+    const { errorResponse } = await validateAndCountApiKey();
+    if (errorResponse) return errorResponse;
+
     let connection;
     try {
         const { searchParams } = new URL(request.url);

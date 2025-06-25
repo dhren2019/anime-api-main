@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/mysql';
+import { validateAndCountApiKey } from '../../auth-requests';
 
 export async function GET() {
+    const { errorResponse } = await validateAndCountApiKey();
+    if (errorResponse) return errorResponse;
+
     try {
         const connection = await pool.getConnection();
         const [rows] = await connection.execute(
