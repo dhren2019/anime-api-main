@@ -103,11 +103,12 @@ export function AppSidebar({ requestsCount = 0, requestsLimit = 10, plan = 'free
                                     `}
                                     style={{ letterSpacing: '-0.01em' }}
                                 >
-                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />
-                                    <span>{item.title}</span>
-                                    {item.url === '/dragonball' && (
-                                        <Badge variant="new" className="ml-2">NUEVO</Badge>
-                                    )}
+                                    <item.icon className={`h-4 w-4 ${path === item.url ? 'text-violet-700' : 'text-gray-400'}`} />                                    <div className="flex items-center">
+                                        <span>{item.title}</span>
+                                        {item.url === '/dragonball' && (
+                                            <Badge variant="new" className="ml-2 text-[10px] py-0 px-1.5">NEW</Badge>
+                                        )}
+                                    </div>
                                     {item.requiresPro && !isPro && (
                                         <Lock className="h-4 w-4 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2" />
                                     )}

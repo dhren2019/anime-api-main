@@ -16,25 +16,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(routes)/dashboard/page.js"
     ],
-    "/(routes)/snippets/page": [
+    "/api/user/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/snippets/page.js"
-    ],
-    "/(routes)/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/search/page.js"
+      "static/chunks/app/api/user/route.js"
     ],
     "/api/keys/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/keys/route.js"
     ],
-    "/api/v1/anime/route": [
+    "/(routes)/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/v1/anime/route.js"
+      "static/chunks/app/(routes)/search/page.js"
     ],
     "/(routes)/dragonball/layout": [
       "static/chunks/webpack.js",
@@ -50,6 +45,26 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/dragonball/characters/route.js"
+    ],
+    "/api/v1/anime/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/v1/anime/route.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/(routes)/snippets/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/snippets/page.js"
+    ],
+    "/(routes)/docs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/docs/page.js"
     ]
   }
 }

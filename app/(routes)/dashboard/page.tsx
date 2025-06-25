@@ -103,25 +103,15 @@ export default function DashboardPage() {
           <Plus className="w-4 h-4" />
           Create new secret key
         </Button>
-      </div>
-
-      <div className="bg-white rounded-lg shadow">
-        <div className="px-6 py-4 border-b">
-          <p className="text-sm text-gray-600">
-            Your secret API keys are listed below. Please note that we do not display your secret API keys again after
-            you generate them.
-          </p>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left border-b">
-                <th className="px-6 py-3 text-sm font-semibold text-gray-600">NAME</th>
-                <th className="px-6 py-3 text-sm font-semibold text-gray-600">KEY</th>
-                <th className="px-6 py-3 text-sm font-semibold text-gray-600">CREATED</th>
-                <th className="px-6 py-3 text-sm font-semibold text-gray-600">LAST USED</th>
-                <th className="px-6 py-3 text-sm font-semibold text-gray-600">ACTIONS</th>
+      </div>      <div className="bg-white rounded-lg shadow">
+        <div className="overflow-x-auto rounded-lg">
+          <table className="w-full"><thead>
+              <tr className="text-left bg-gray-900 text-white">
+                <th className="px-6 py-3 text-sm font-semibold rounded-tl-lg">NAME</th>
+                <th className="px-6 py-3 text-sm font-semibold">KEY</th>
+                <th className="px-6 py-3 text-sm font-semibold">CREATED</th>
+                <th className="px-6 py-3 text-sm font-semibold">LAST USED</th>
+                <th className="px-6 py-3 text-sm font-semibold rounded-tr-lg">ACTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -176,15 +166,13 @@ export default function DashboardPage() {
             </tbody>
           </table>
         </div>
-      </div>
-
-      <ApiKeyDialog
+      </div>      <ApiKeyDialog
         isOpen={isCreateDialogOpen}
         onClose={() => setIsCreateDialogOpen(false)}
         onConfirm={handleCreateKey}
       />
 
-      <div className="mt-8 space-y-4">
+      <div className="mt-12 space-y-4 p-6 border border-gray-200 rounded-lg">
         <h2 className="text-xl font-semibold">API Documentation</h2>
         <p className="text-gray-600">
           To use the Anime API, include your API key in the headers of your requests:
