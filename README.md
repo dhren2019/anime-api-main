@@ -363,3 +363,104 @@ Puedes desplegar la app en:
 ---
 
 Si tienes dudas sobre el despliegue en un proveedor específico, consulta la documentación oficial de Next.js o pregunta en la comunidad.
+
+## Gestión de API Keys y Límites de Requests
+
+### Planes y Límites
+
+La plataforma maneja dos tipos de planes para las API keys:
+
+- **Plan Free**: Límite de 10 requests por mes
+- **Plan Pro**: Límite de 150 requests por mes
+
+### Funcionamiento Global de Límites
+
+El sistema de límites funciona de manera **global por usuario**, no por API key individual:
+
+1. **Plan Global del Usuario**: Si un usuario tiene al menos una API key con plan "pro", se considera usuario pro globalmente
+2. **Límite Global**: El límite total de requests se aplica a la suma de todas las API keys del usuario:
+   - Usuario Free: 10 requests totales entre todas sus keys
+   - Usuario Pro: 150 requests totales entre todas sus keys
+3. **Conteo Global**: Cada request realizada con cualquiera de sus API keys incrementa el contador global del usuario
+
+### Ejemplo Práctico
+
+Si un usuario tiene:
+- API Key A (plan: free, requests: 16)
+- API Key B (plan: pro, requests: 25)
+
+**Resultado:**
+- El usuario es considerado **Pro** (tiene una key pro)
+- Límite total: **150 requests**
+- Requests usadas: **41** (16 + 25)
+- Requests disponibles: **109** (150 - 41)
+
+El usuario puede usar cualquiera de sus dos API keys y ambas contarán contra el mismo límite global de 150.
+
+### Generación de API Keys
+
+Para generar una nueva API key:
+
+```bash
+POST /api/keys
+Authorization: Bearer <clerk-token>
+Content-Type: application/json
+
+{
+  "name": "Mi API Key",
+  "plan": "pro"  // "free" o "pro"
+}
+```
+
+### Verificación de Uso
+
+Para verificar el uso actual de tus API keys:
+
+```bash
+GET /api/keys
+Authorization: Bearer <clerk-token>
+```
+
+Respuesta:
+```json
+{
+  "keys": [
+    {
+      "id": 1,
+      "name": "Mi API Key",
+      "key": "sk-...",
+      "plan": "pro",
+      "requestsCount": 25,
+      "requestsLimit": 150,
+      "createdAt": "2025-06-26T10:00:00Z",
+      "lastUsed": "2025-06-26T12:30:00Z"
+    }
+  ]
+}
+```
+
+### Depuración y Logs
+
+Cuando realizas requests a la API, el sistema genera logs detallados para depuración:
+
+```
+[API DEBUG] userId: 6 | plan global: pro | límite global: 150
+[API DEBUG] key: sk-a9d15509ddb6bb3f... | plan individual: free | requestsCount: 16
+[API DEBUG] key: sk-e286719cda3aef9e... | plan individual: pro | requestsCount: 25
+[API DEBUG] Verificando límite global: 41 >= 150 ? false
+[API DEBUG] Incrementando key: sk-a9d15509ddb6bb3f... de 16 a 17
+```
+
+### Códigos de Error
+
+- **401 Unauthorized**: API key faltante o inválida
+- **429 Too Many Requests**: 
+  - Usuario Free: "Upgrade to pro"
+  - Usuario Pro: "API limit exceeded"
+
+### Mejores Prácticas
+
+1. **Múltiples API Keys**: Puedes generar múltiples API keys para diferentes aplicaciones o entornos
+2. **Plan Pro Global**: Si necesitas más de 10 requests, asegúrate de tener al menos una key con plan "pro"
+3. **Monitoreo**: Revisa regularmente tu uso de API keys desde el dashboard
+4. **Rotación**: Considera rotar tus API keys periódicamente por seguridad

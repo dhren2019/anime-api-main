@@ -1,13 +1,9 @@
 {
-  "/api/dragonball/transformations/route": "app/api/dragonball/transformations/route.js",
-  "/api/dragonball/planets/route": "app/api/dragonball/planets/route.js",
-  "/api/dragonball/characters/route": "app/api/dragonball/characters/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/keys/route": "app/api/keys/route.js",
   "/api/user/route": "app/api/user/route.js",
+  "/api/dragonball/characters/route": "app/api/dragonball/characters/route.js",
+  "/api/v1/anime/route": "app/api/v1/anime/route.js",
   "/page": "app/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
-  "/(routes)/search/page": "app/(routes)/search/page.js",
   "/(routes)/dragonball/page": "app/(routes)/dragonball/page.js"
 }
