@@ -12,8 +12,12 @@ interface Transformation extends RowDataPacket {
 }
 
 export async function GET(request: Request) {
-    const { errorResponse } = await validateAndCountApiKey();
-    if (errorResponse) return errorResponse;
+    // Si la petición tiene API key, cuenta y suma la petición
+    const apiKey = request.headers.get('authorization');
+    if (apiKey) {
+        const { errorResponse } = await validateAndCountApiKey();
+        if (errorResponse) return errorResponse;
+    }
 
     let connection;
     try {

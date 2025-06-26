@@ -10,41 +10,36 @@ interface Character extends RowDataPacket {
 }
 
 export async function GET(request: Request) {
-    const { errorResponse } = await validateAndCountApiKey();
-    if (errorResponse) return errorResponse;
-
+    // Si la petición tiene API key, cuenta y suma la petición
+    const apiKey = request.headers.get('authorization');
+    if (apiKey) {
+        const { errorResponse } = await validateAndCountApiKey();
+        if (errorResponse) return errorResponse;
+    }
     let connection;
     try {
         const { searchParams } = new URL(request.url);
         const name = searchParams.get('name');
-        
         connection = await pool.getConnection();
         let query = 'SELECT * FROM characters';
         let params = [];
-
         if (name) {
             query += ' WHERE name LIKE ?';
             params.push(`${name}`);
         }
-
         query += ' ORDER BY id ASC';
-        
         const [characters] = await connection.execute<Character[]>(query, params);
-
-        // Si se busca por nombre y no se encuentra
         if (name && characters.length === 0) {
             return NextResponse.json({
                 success: false,
                 error: 'Character not found'
             }, { status: 404 });
         }
-
         return NextResponse.json({
             success: true,
             count: characters.length,
             data: name ? characters[0] : characters
         });
-
     } catch (error) {
         console.error('Error:', error);
         return NextResponse.json({
