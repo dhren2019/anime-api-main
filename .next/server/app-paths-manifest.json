@@ -1,7 +1,9 @@
 {
-  "/api/dragonball/characters/route": "app/api/dragonball/characters/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/keys/route": "app/api/keys/route.js",
   "/api/user/route": "app/api/user/route.js",
+  "/api/keys/route": "app/api/keys/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/chatbot/route": "app/api/chatbot/route.js",
+  "/page": "app/page.js",
+  "/(routes)/search/page": "app/(routes)/search/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js"
 }

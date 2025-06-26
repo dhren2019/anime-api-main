@@ -20,9 +20,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Usuario no encontrado' }, { status: 404 });
     }
     const dbUser = dbUserArr[0];
-    // Buscar API key activa y plan
-    const dbApiKeyArr = await db.select().from(apiKeysTable).where(and(eq(apiKeysTable.userId, dbUser.id), eq(apiKeysTable.isActive, true))).limit(1);
-    if (!dbApiKeyArr.length || dbApiKeyArr[0].plan !== 'pro') {
+    // Buscar todas las API keys activas del usuario
+    const dbApiKeysArr = await db.select().from(apiKeysTable).where(and(eq(apiKeysTable.userId, dbUser.id), eq(apiKeysTable.isActive, true)));
+    // Verificar si tiene al menos una key PRO
+    const isPro = dbApiKeysArr.some(key => key.plan === 'pro');
+    if (!isPro) {
       return NextResponse.json({ error: 'Esta función requiere un plan PRO' }, { status: 403 });
     }
 
