@@ -50,6 +50,36 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(routes)/dragonball/page.js"
+    ],
+    "/(routes)/search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/search/page.js"
+    ],
+    "/api/v1/validate/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/v1/validate/route.js"
+    ],
+    "/(routes)/settings/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/settings/page.js"
+    ],
+    "/api/chatbot/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/chatbot/route.js"
+    ],
+    "/(routes)/docs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/docs/page.js"
+    ],
+    "/(routes)/snippets/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/snippets/page.js"
     ]
   }
 }

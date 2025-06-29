@@ -34,11 +34,13 @@ export default function AnimeSearchPage() {
     setError(null);
     setLoading(true);
     try {
-      // Probar la key con un endpoint protegido
-      const res = await fetch("/api/v1/anime", {
+      // Usar endpoint específico para validar sin incrementar contador
+      const res = await fetch("/api/v1/validate", {
         headers: { Authorization: `Bearer ${apiKey}` },
       });
       if (res.ok) {
+        const data = await res.json();
+        console.log('[Frontend] API Key válida:', data);
         setIsValid(true);
       } else {
         setError("API key inválida o sin permisos.");
@@ -61,6 +63,7 @@ export default function AnimeSearchPage() {
       const res = await fetch(`/api/v1/anime?${params.toString()}`, {
         headers: { Authorization: `Bearer ${apiKey}` },
       });
+      console.log('[Frontend] Respuesta de búsqueda:', res.status);
       if (res.status === 429) {
         const text = await res.text();
         if (text === 'Upgrade to pro') {
