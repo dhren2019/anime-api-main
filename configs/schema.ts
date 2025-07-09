@@ -35,6 +35,40 @@ export const animesTable = pgTable("animes", {
     dragonball_id: integer(), // Nueva columna para relacionar con api_dragonball
 });
 
+// Tabla de personajes de Dragon Ball (ya existente en la base de datos)
+export const charactersTable = pgTable("characters", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    image: varchar({ length: 255 }).notNull(),
+    ki: varchar({ length: 255 }).notNull(),
+    maxki: varchar({ length: 255 }).notNull(),
+    race: varchar({ length: 32 }).notNull(),
+    gender: varchar({ length: 16 }).notNull(),
+    affiliation: varchar({ length: 32 }).notNull(),
+    description: text().notNull(),
+    originplanetid: integer().references(() => planetsTable.id),
+    deletedat: timestamp( { precision: 6 } ),
+});
+
+export const planetsTable = pgTable("planets", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    image: varchar({ length: 255 }).notNull(),
+    isdestroyed: integer().notNull(), // SMALLINT en SQL, integer en Drizzle
+    description: text().notNull(),
+    deletedat: timestamp( { precision: 6 } ),
+});
+
+// Tabla de transformaciones de Dragon Ball (ya existente en la base de datos)
+export const transformationsTable = pgTable("transformations", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    name: varchar({ length: 255 }).notNull(),
+    image: varchar({ length: 255 }).notNull(),
+    ki: varchar({ length: 255 }).notNull(),
+    characterid: integer().references(() => charactersTable.id),
+    deletedat: timestamp( { precision: 6 } ),
+});
+
 export const apiDragonballTable = pgTable("api_dragonball", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),

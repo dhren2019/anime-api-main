@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/mysql';
-import { RowDataPacket } from 'mysql2';
+// Cambiamos de MySQL a Drizzle para acceder a la base de datos
+import { db } from '@/configs/db';
+import { transformationsTable } from '@/configs/schema';
 import { validateAndCountApiKey } from '../auth-requests';
+import { like } from 'drizzle-orm';
 
-interface Transformation extends RowDataPacket {
+interface Transformation {
     id: number;
     name: string;
     image: string;
@@ -19,23 +21,18 @@ export async function GET(request: Request) {
         if (errorResponse) return errorResponse;
     }
 
-    let connection;
     try {
         const { searchParams } = new URL(request.url);
         const name = searchParams.get('name');
         
-        connection = await pool.getConnection();
-        let query = 'SELECT * FROM transformations';
-        let params = [];
-
+        let transformations;
         if (name) {
-            query += ' WHERE name LIKE ?';
-            params.push(`${name}`);
+            // Consulta con filtro por nombre usando Drizzle
+            transformations = await db.select().from(transformationsTable).where(like(transformationsTable.name, `%${name}%`));
+        } else {
+            // Consulta todas las transformaciones usando Drizzle
+            transformations = await db.select().from(transformationsTable);
         }
-
-        query += ' ORDER BY id ASC';
-        
-        const [transformations] = await connection.execute<Transformation[]>(query, params);
 
         // Si se busca por nombre y no se encuentra
         if (name && transformations.length === 0) {
@@ -57,24 +54,16 @@ export async function GET(request: Request) {
             success: false,
             error: 'Error retrieving transformations'
         }, { status: 500 });
-    } finally {
-        if (connection) {
-            connection.release();
-        }
     }
 }
 
 export async function POST(request: Request) {
-    let connection;
     try {
         const body = await request.json();
         const { name, image, ki, characterId } = body;
         
-        connection = await pool.getConnection();
-        const [result] = await connection.execute(
-            'INSERT INTO transformations (name, image, ki, characterId) VALUES (?, ?, ?, ?)',
-            [name, image, ki, characterId]
-        );
+        // Insertamos la nueva transformación usando Drizzle
+        const result = await db.insert(transformationsTable).values({ name, image, ki, characterid: characterId });
         
         return NextResponse.json({
             success: true,
@@ -86,9 +75,5 @@ export async function POST(request: Request) {
             success: false,
             error: 'Error creating transformation'
         }, { status: 500 });
-    } finally {
-        if (connection) {
-            connection.release();
-        }
     }
 }
