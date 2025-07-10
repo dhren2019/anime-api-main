@@ -7,7 +7,7 @@ interface CharacterDetailsProps {
     name: string;
     image: string;
     ki: string;
-    maxKi: string;
+    maxki: string;
     race: string;
     gender: string;
     affiliation: string;
@@ -37,7 +37,7 @@ export function CharacterDetails({ isOpen, onClose, character }: CharacterDetail
                 <p>Race: <span className="text-yellow-400">{character.race}</span></p>
                 <p>Gender: <span className="text-yellow-400">{character.gender}</span></p>
                 <p>Base KI: <span className="text-green-400">{character.ki}</span></p>
-                <p>Max KI: <span className="text-blue-400">{character.maxKi}</span></p>
+                <p>Max KI: <span className="text-blue-400">{character.maxki}</span></p>
                 <p>Affiliation: <span className="text-purple-400">{character.affiliation}</span></p>
               </div>
             </div>

@@ -14,7 +14,7 @@ interface Character {
   name: string;
   image: string;
   ki: string;
-  maxKi: string;
+  maxki: string;
   race: string;
   gender: string;
   affiliation: string;
@@ -101,7 +101,7 @@ export default function DragonBallPage() {
               race={character.race}
               gender={character.gender}
               ki={character.ki}
-              maxKi={character.maxKi}
+              maxKi={character.maxki}
               affiliation={character.affiliation}
             />
           </div>
@@ -301,7 +301,7 @@ export default function DragonBallPage() {
             name: selectedCharacter.name,
             image: selectedCharacter.image,
             ki: selectedCharacter.ki,
-            maxKi: selectedCharacter.maxKi,
+            maxki: selectedCharacter.maxki,
             race: selectedCharacter.race,
             gender: selectedCharacter.gender,
             affiliation: selectedCharacter.affiliation,
