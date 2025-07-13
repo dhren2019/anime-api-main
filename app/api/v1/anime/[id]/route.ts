@@ -3,6 +3,7 @@ import { headers } from 'next/headers';
 import { db } from '@/configs/db';
 import { apiKeysTable, animesTable } from '@/configs/schema';
 import { eq } from 'drizzle-orm';
+import { validateAndCountApiKey } from '../../../dragonball/auth-requests';
 
 // Validate API key middleware
 async function validateApiKey(apiKey: string) {
@@ -18,6 +19,9 @@ export async function GET(
     req: Request,
     { params }: { params: { id: string } }
 ) {
+    const { errorResponse } = await validateAndCountApiKey();
+    if (errorResponse) return errorResponse;
+
     try {
         const headersList = await headers();
         const authorization = headersList.get('authorization');

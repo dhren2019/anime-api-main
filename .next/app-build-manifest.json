@@ -6,6 +6,16 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/api/user/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/user/route.js"
+    ],
     "/(routes)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,40 +26,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(routes)/dashboard/page.js"
     ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/api/keys/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/keys/route.js"
     ],
-    "/(routes)/settings/page": [
+    "/(routes)/dragonball/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/settings/page.js"
+      "static/chunks/app/(routes)/dragonball/layout.js"
     ],
-    "/api/user/route": [
+    "/(routes)/dragonball/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/user/route.js"
+      "static/chunks/app/(routes)/dragonball/page.js"
     ],
-    "/(routes)/search/page": [
+    "/api/dragonball/characters/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(routes)/search/page.js"
+      "static/chunks/app/api/dragonball/characters/route.js"
     ],
-    "/api/v1/anime/route": [
+    "/api/dragonball/transformations/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/v1/anime/route.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/dragonball/transformations/route.js"
     ]
   }
 }

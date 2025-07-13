@@ -1,0 +1,346 @@
+[
+  {
+    "id": 1,
+    "name": "Goku SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699050838/x8vdjitiaygwbrbh3ps9.png",
+    "ki": "3 Billion",
+    "characterId": 1,
+    "deletedAt": ""
+  },
+  {
+    "id": 2,
+    "name": "Goku SSJ2",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699050861/b4engvubliyprwpgdzns.png",
+    "ki": "6 Billion",
+    "characterId": 1,
+    "deletedAt": ""
+  },
+  {
+    "id": 3,
+    "name": "Goku SSJ3",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699050875/kw8mf7q101rjjiir387d.png",
+    "ki": "24 Billion",
+    "characterId": 1,
+    "deletedAt": ""
+  },
+  {
+    "id": 4,
+    "name": "Goku SSJ4",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699050888/iugojj27qfragm7rgum4.jpg",
+    "ki": "2 Quadrillion",
+    "characterId": 1,
+    "deletedAt": ""
+  },
+  {
+    "id": 5,
+    "name": "Goku SSJB",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699050898/wfqyp1lornq8rpavfx04.png",
+    "ki": "9 Quintillion",
+    "characterId": 1,
+    "deletedAt": ""
+  },
+  {
+    "id": 7,
+    "name": "Vegeta SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699102175/dnbpmmovwjguohzx01lg.png",
+    "ki": "330.000.000",
+    "characterId": 2,
+    "deletedAt": ""
+  },
+  {
+    "id": 8,
+    "name": "Vegeta SSJ2",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699102306/n3fixdteu9txlu3dddmc.png",
+    "ki": "24 Billion",
+    "characterId": 2,
+    "deletedAt": ""
+  },
+  {
+    "id": 9,
+    "name": "Vegeta SSJ4",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699102363/cclvpjmuotw54t63xzgb.png",
+    "ki": "1.8 Trillion",
+    "characterId": 2,
+    "deletedAt": ""
+  },
+  {
+    "id": 10,
+    "name": "Vegeta SSJB",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699102458/ran2samfpy6eerykx7xb.png",
+    "ki": "100 Quintillion",
+    "characterId": 2,
+    "deletedAt": ""
+  },
+  {
+    "id": 11,
+    "name": "Vegeta Mega Instinc Evil",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699102556/tccogsakz8uwwpwz0otm.png",
+    "ki": "19.84 Septillion",
+    "characterId": 2,
+    "deletedAt": ""
+  },
+  {
+    "id": 12,
+    "name": "Piccolo Super Namekian",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103067/yaqh8ucsnimqpcfvxxih.webp",
+    "ki": "2.175 Billion",
+    "characterId": 3,
+    "deletedAt": ""
+  },
+  {
+    "id": 13,
+    "name": "Piccolo Orange",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103138/hjgmzwrquikst59vgl1h.png",
+    "ki": "41.25 Quintillion",
+    "characterId": 3,
+    "deletedAt": ""
+  },
+  {
+    "id": 14,
+    "name": "Freezer 2nd Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103384/nmxb4cjfjo5rfosxkxji.png",
+    "ki": "1.060.000",
+    "characterId": 5,
+    "deletedAt": ""
+  },
+  {
+    "id": 15,
+    "name": "Freezer 3rd Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103453/ff7gj92uqoaeixpcen5d.webp",
+    "ki": "2.120.000",
+    "characterId": 5,
+    "deletedAt": ""
+  },
+  {
+    "id": 16,
+    "name": "Freezer Perfect Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103535/ml30m64bnrbvfrsd0ulo.png",
+    "ki": "60.000.000",
+    "characterId": 5,
+    "deletedAt": ""
+  },
+  {
+    "id": 17,
+    "name": "Freezer Perfect Form (Golden)",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699103644/lqyq2xsuxlw635ez09tr.png",
+    "ki": "100 Quintillion",
+    "characterId": 5,
+    "deletedAt": ""
+  },
+  {
+    "id": 18,
+    "name": "Zarbon Monster",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115148/yqjsplbbeb2bq30cprbf.png",
+    "ki": 30,
+    "characterId": 6,
+    "deletedAt": ""
+  },
+  {
+    "id": 19,
+    "name": "Imperfect Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115356/hdx9lnwyh1uoiohwzrye.png",
+    "ki": "370.000.000",
+    "characterId": 9,
+    "deletedAt": ""
+  },
+  {
+    "id": 20,
+    "name": "Semi Perfect Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115417/ejtkaedhxk0tlxbvkwfa.webp",
+    "ki": "897.000.000",
+    "characterId": 9,
+    "deletedAt": ""
+  },
+  {
+    "id": 21,
+    "name": "Super Perfect Form",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115577/amtizmras2gdswzw4pa6.png",
+    "ki": "10.970.000.000",
+    "characterId": 9,
+    "deletedAt": ""
+  },
+  {
+    "id": 22,
+    "name": "Gohan SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115821/tqbqt5vqj30ce1ooiqsi.png",
+    "ki": "4.700.000.000",
+    "characterId": 10,
+    "deletedAt": ""
+  },
+  {
+    "id": 23,
+    "name": "Gohan SSJ2",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699115857/rllf9puo39dhhcxhh9e7.webp",
+    "ki": "10.200.000.000",
+    "characterId": 10,
+    "deletedAt": ""
+  },
+  {
+    "id": 24,
+    "name": "Gohan Ultimate",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699116154/zqcs85a5magvi9cjsvm6.webp",
+    "ki": "43.000.000.000",
+    "characterId": 10,
+    "deletedAt": ""
+  },
+  {
+    "id": 25,
+    "name": "Gohan Beast",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699116269/thotogohux1vogilpyas.png",
+    "ki": "25.6 Septillion",
+    "characterId": 10,
+    "deletedAt": ""
+  },
+  {
+    "id": 26,
+    "name": "Trunks SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699116809/ar639rlkzcqjmnlvmrq7.png",
+    "ki": "905.000.000",
+    "characterId": 16,
+    "deletedAt": ""
+  },
+  {
+    "id": 27,
+    "name": "Trunks SSJ2",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699116921/hbt3qrbu86zactkkfgm3.jpg",
+    "ki": "18.000.000.000",
+    "characterId": 16,
+    "deletedAt": ""
+  },
+  {
+    "id": 28,
+    "name": "Trunks SSJ3",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699117200/yswhfez5fdbteuyvghds.webp",
+    "ki": "1.25 Billion",
+    "characterId": 16,
+    "deletedAt": ""
+  },
+  {
+    "id": 29,
+    "name": "Trunks Rage",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699117449/pj6jix0qmbffmammeedo.png",
+    "ki": "17.5 Quintillion",
+    "characterId": 16,
+    "deletedAt": ""
+  },
+  {
+    "id": 30,
+    "name": "Gotenks SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699117748/ejdwijlhlfc8mhvb0fpn.png",
+    "ki": "5.7 Billion",
+    "characterId": 15,
+    "deletedAt": ""
+  },
+  {
+    "id": 31,
+    "name": "Gotenks SSJ3",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699117802/iasvpxc7urinhfwriwfn.webp",
+    "ki": "45.6 Billion",
+    "characterId": 15,
+    "deletedAt": ""
+  },
+  {
+    "id": 32,
+    "name": "Super Buu",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699118823/dis9ipwwvohtfmy1peyu.webp",
+    "ki": "5.670.000.000",
+    "characterId": 32,
+    "deletedAt": ""
+  },
+  {
+    "id": 33,
+    "name": "Majin Buu (Gotenks)",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699118971/pimtawxtqt8wtml5t8wk.png",
+    "ki": "12.300.000.000",
+    "characterId": 32,
+    "deletedAt": ""
+  },
+  {
+    "id": 34,
+    "name": "Majin Buu (Gohan)",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119043/ajvq0rfmeqh5fstmmq2q.webp",
+    "ki": "14.800.000.000",
+    "characterId": 32,
+    "deletedAt": ""
+  },
+  {
+    "id": 35,
+    "name": "Majin Buu (Pure)",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119236/tqbwgmghi4ir47xltk3z.png",
+    "ki": "4.000.000.000",
+    "characterId": 32,
+    "deletedAt": ""
+  },
+  {
+    "id": 36,
+    "name": "Gogeta SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119709/mevkuuaqnbwrm1beiorc.png",
+    "ki": "6.3 sextillion",
+    "characterId": 65,
+    "deletedAt": ""
+  },
+  {
+    "id": 37,
+    "name": "Gogeta SSJ4",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119779/c6owx20373wbh3q9dynw.png",
+    "ki": "168 quadrillion",
+    "characterId": 65,
+    "deletedAt": ""
+  },
+  {
+    "id": 38,
+    "name": "Gogeta SSJB",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119800/i4bebw9a4pw3yzk1rrmc.png",
+    "ki": "12.6 septillion",
+    "characterId": 65,
+    "deletedAt": ""
+  },
+  {
+    "id": 39,
+    "name": "Gogeta SSJB Evolved",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699119863/nc1bhpdpzspbd8yxnt97.png",
+    "ki": "1.26 octillion",
+    "characterId": 65,
+    "deletedAt": ""
+  },
+  {
+    "id": 40,
+    "name": "Vegetto SSJ",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699120073/wjpgltaxk350sl3lnxct.png",
+    "ki": "9 Trillion",
+    "characterId": 66,
+    "deletedAt": ""
+  },
+  {
+    "id": 41,
+    "name": "Vegetto SSJB",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699120135/z0gbiyenfmdemzf1vvxv.png",
+    "ki": "10.8 Septillion",
+    "characterId": 66,
+    "deletedAt": ""
+  },
+  {
+    "id": 42,
+    "name": "Super Janemba",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699120959/bo6n1qvcc1tzq2jyzyhq.webp",
+    "ki": "75 Billion",
+    "characterId": 67,
+    "deletedAt": ""
+  },
+  {
+    "id": 43,
+    "name": "Broly SSJ Legendary",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699121913/bwa20djt8ekpcydxm6lf.webp",
+    "ki": "11.2 Septillion",
+    "characterId": 68,
+    "deletedAt": ""
+  },
+  {
+    "id": 44,
+    "name": "Goku Ultra Instinc",
+    "image": "https://res.cloudinary.com/dgtgbyo76/image/upload/v1699123373/tmj6mkodjqbxlc6d3qfi.png",
+    "ki": "90 Septillion",
+    "characterId": 1,
+    "deletedAt": ""
+  }
+]

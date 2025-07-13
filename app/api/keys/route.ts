@@ -61,41 +61,37 @@ export async function POST(req: Request) {
 export async function GET() {
   try {
     const user = await currentUser();
-    console.log('Usuario Clerk:', user);
-
     if (!user || !user.primaryEmailAddress?.emailAddress) {
-      console.log('No autenticado');
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
     // Get the user from our database
     const dbUser = await db
       .select()
       .from(usersTable)
       .where(eq(usersTable.email, user.primaryEmailAddress.emailAddress))
       .limit(1);
-
-    console.log('Usuario en DB:', dbUser);
-
     if (!dbUser.length) {
-      console.log('Usuario no encontrado en DB');
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
-
     const keys = await db
       .select()
       .from(apiKeysTable)
       .where(eq(apiKeysTable.userId, dbUser[0].id));
-
-    console.log('API Keys encontradas:', keys);
-
-    return NextResponse.json({ keys });
-  } catch (error: any) {
-    console.error('Error fetching API keys:', error, error?.message, JSON.stringify(error));
-    return NextResponse.json(
-      { error: error?.message || JSON.stringify(error) || 'Internal Server Error' }, 
-      { status: 500 }
-    );
+    // Calcular plan global y requests globales
+    const isPro = keys.some(k => k.plan === 'pro');
+    const requestsLimit = isPro ? 150 : 10;
+    const requestsCount = keys.reduce((sum, k) => sum + (k.requestsCount || 0), 0);
+    const plan = isPro ? 'pro' : 'free';
+    // Devolver todas las keys pero con los datos globales
+    const keysWithGlobal = keys.map(k => ({
+      ...k,
+      plan,
+      requestsLimit,
+      requestsCount
+    }));
+    return NextResponse.json({ keys: keysWithGlobal });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
