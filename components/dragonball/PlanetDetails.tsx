@@ -28,10 +28,10 @@ export function PlanetDetails({ isOpen, onClose, planet }: PlanetDetailsProps) {
           </div>
           <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold text-yellow-500">Planet Info</h3>
+              <h3 className="text-xl font-semibold text-yellow-500">Información del Planeta</h3>
               <div className="mt-2 space-y-2">
                 {planet.isDestroyed && (
-                  <p className="text-red-500 font-semibold">Status: Destroyed</p>
+                  <p className="text-red-500 font-semibold">Estado: Destruido</p>
                 )}
                 {planet.description && (
                   <div className="text-gray-300 max-h-[50vh] overflow-y-auto pr-2">

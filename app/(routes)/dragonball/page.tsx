@@ -81,12 +81,66 @@ export default function DragonBallPage() {
 
   const renderCharacters = () => {
     if (!characters?.length) {
-      return <p className="text-center text-gray-400">No characters found</p>;
+      return <p className="text-center text-gray-400">No se encontraron personajes</p>;
     }
+
+    // Lista de personajes a ocultar (desde Gogeta Super Saiyan Blue hasta Gohan Masenko x10)
+    const hiddenCharacters = [
+      "Gogeta (Super Saiyan Blue)",
+      "Vegeta (Super Saiyan Blue Evolved)", 
+      "Vegetto (Super Saiyan Blue)",
+      "Broly (Full Power)",
+      "Gotenks (Galactic Donuts)",
+      "Gotenks (Galactic Donuts x10)",
+      "Gotenks (Super Saiyan 3)",
+      "Gohan (Super Saiyan 3)",
+      "Gohan (Masenko)",
+      "Gohan (Masenko x10)",
+      // Personajes adicionales a ocultar
+      "Goku (Spirit Bomb)",
+      "Vegeta (Final Flash)",
+      "Vegeta (Big Bang Attack)",
+      "Goku (Kamehameha)",
+      "Gohan (Kamehameha)",
+      "Trunks (Burning Attack)",
+      "Vegeta (Final Explosion)",
+      "Goku (Dragon Fist)",
+      "Vegeta (Galick Gun)",
+      "Gohan (Father-Son Kamehameha)",
+      "Gotenks (Super Ghost Kamikaze Attack)",
+      "Vegeta (Super Galick Gun)",
+      "Goku (Super Kamehameha)",
+      "Gohan (Super Masenko)",
+      "Trunks (Super Burning Attack)",
+      "Vegeta (Super Final Flash)",
+      "Goku (Super Spirit Bomb)",
+      "Vegeta (Super Saiyan 4)",
+      "Goku (Super Saiyan 4)",
+      "Goku (Kamehameha x10)",
+      "Vegeta (Final Flash x10)",
+      // Personajes adicionales de las imágenes
+      "Kefla (Super Saiyan)",
+      "Goku (Ultra Instinct)",
+      "Vegeta (Ultra Instinct)"
+    ];
+
+    // Filtrar personajes para ocultar los especificados
+    const filteredCharacters = characters.filter(character => 
+      !hiddenCharacters.includes(character.name)
+    );
+
+    // Ordenar para que Goku aparezca primero
+    const sortedCharacters = filteredCharacters.sort((a, b) => {
+      // Si el personaje es "Goku", va primero
+      if (a.name === "Goku") return -1;
+      if (b.name === "Goku") return 1;
+      // Para el resto, mantener el orden original
+      return 0;
+    });
 
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {characters.map((character) => (
+        {sortedCharacters.map((character) => (
           <div
             key={character.id}
             onClick={() => {
@@ -112,7 +166,7 @@ export default function DragonBallPage() {
 
   const renderTransformations = () => {
     if (!transformations?.length) {
-      return <p className="text-center text-gray-400">No transformations found</p>;
+      return <p className="text-center text-gray-400">No se encontraron transformaciones</p>;
     }
 
     return (
@@ -147,7 +201,7 @@ export default function DragonBallPage() {
 
   const renderPlanets = () => {
     if (!planets?.length) {
-      return <p className="text-center text-gray-400">No planets found</p>;
+      return <p className="text-center text-gray-400">No se encontraron planetas</p>;
     }
 
     return (
@@ -197,15 +251,15 @@ export default function DragonBallPage() {
 
       <Tabs defaultValue="characters" value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-gray-900">
-          <TabsTrigger value="characters">Characters</TabsTrigger>
-          <TabsTrigger value="transformations">Transformations</TabsTrigger>
-          <TabsTrigger value="planets">Planets</TabsTrigger>
+          <TabsTrigger value="characters">Personajes</TabsTrigger>
+          <TabsTrigger value="transformations">Transformaciones</TabsTrigger>
+          <TabsTrigger value="planets">Planetas</TabsTrigger>
         </TabsList>
 
         <div className="mt-8">
           <TabsContent value="characters">
             {loading ? (
-              <p className="text-center text-gray-400">Loading characters...</p>
+              <p className="text-center text-gray-400">Cargando personajes...</p>
             ) : (
               renderCharacters()
             )}
@@ -213,11 +267,11 @@ export default function DragonBallPage() {
 
           <TabsContent value="transformations">
             {loading ? (
-              <p className="text-center text-gray-400">Loading transformations...</p>
+              <p className="text-center text-gray-400">Cargando transformaciones...</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {!transformations?.length ? (
-                  <p className="text-center text-gray-400">No transformations found</p>
+                  <p className="text-center text-gray-400">No se encontraron transformaciones</p>
                 ) : (
                   transformations.map((transformation) => (
                     <div
@@ -250,11 +304,11 @@ export default function DragonBallPage() {
 
           <TabsContent value="planets">
             {loading ? (
-              <p className="text-center text-gray-400">Loading planets...</p>
+              <p className="text-center text-gray-400">Cargando planetas...</p>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {!planets?.length ? (
-                  <p className="text-center text-gray-400">No planets found</p>
+                  <p className="text-center text-gray-400">No se encontraron planetas</p>
                 ) : (
                   planets.map((planet) => (
                     <div

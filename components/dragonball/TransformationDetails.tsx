@@ -28,10 +28,10 @@ export function TransformationDetails({ isOpen, onClose, transformation }: Trans
           </div>
           <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold text-yellow-500">Transformation Info</h3>
+              <h3 className="text-xl font-semibold text-yellow-500">Información de Transformación</h3>
               <div className="mt-2 space-y-2">
-                <p>Power Level: <span className="text-blue-400">{transformation.ki}</span></p>
-                <p>Character ID: <span className="text-purple-400">#{transformation.characterId}</span></p>
+                <p>Nivel de Poder: <span className="text-blue-400">{transformation.ki}</span></p>
+                <p>ID del Personaje: <span className="text-purple-400">#{transformation.characterId}</span></p>
               </div>
             </div>
           </div>

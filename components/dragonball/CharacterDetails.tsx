@@ -32,18 +32,18 @@ export function CharacterDetails({ isOpen, onClose, character }: CharacterDetail
           </div>
           <div className="space-y-4 overflow-y-auto">
             <div className="bg-gray-800 p-4 rounded-lg">
-              <h3 className="text-xl font-semibold text-yellow-500">Character Info</h3>
+              <h3 className="text-xl font-semibold text-yellow-500">Información del Personaje</h3>
               <div className="mt-2 space-y-2">
-                <p>Race: <span className="text-yellow-400">{character.race}</span></p>
-                <p>Gender: <span className="text-yellow-400">{character.gender}</span></p>
-                <p>Base KI: <span className="text-green-400">{character.ki}</span></p>
-                <p>Max KI: <span className="text-blue-400">{character.maxki}</span></p>
-                <p>Affiliation: <span className="text-purple-400">{character.affiliation}</span></p>
+                <p>Raza: <span className="text-yellow-400">{character.race}</span></p>
+                <p>Género: <span className="text-yellow-400">{character.gender}</span></p>
+                <p>KI Base: <span className="text-green-400">{character.ki}</span></p>
+                <p>KI Máximo: <span className="text-blue-400">{character.maxki}</span></p>
+                <p>Afiliación: <span className="text-purple-400">{character.affiliation}</span></p>
               </div>
             </div>
             {character.description && (
               <div className="bg-gray-800 p-4 rounded-lg">
-                <h3 className="text-xl font-semibold text-yellow-500">Description</h3>
+                <h3 className="text-xl font-semibold text-yellow-500">Descripción</h3>
                 <div className="mt-2 text-gray-300 max-h-[50vh] overflow-y-auto pr-2">{character.description}</div>
               </div>
             )}
