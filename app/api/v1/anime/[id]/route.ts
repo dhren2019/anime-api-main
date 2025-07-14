@@ -17,12 +17,13 @@ async function validateApiKey(apiKey: string) {
 
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const { errorResponse } = await validateAndCountApiKey();
     if (errorResponse) return errorResponse;
 
     try {
+        const resolvedParams = await params;
         const headersList = await headers();
         const authorization = headersList.get('authorization');
         
@@ -50,7 +51,7 @@ export async function GET(
 
         const anime = await db.select()
             .from(animesTable)
-            .where(eq(animesTable.id, parseInt(params.id)))
+            .where(eq(animesTable.id, parseInt(resolvedParams.id)))
             .limit(1);
 
         if (!anime.length) {
