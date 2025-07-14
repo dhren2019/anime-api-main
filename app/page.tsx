@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image";
-import Head from "next/head";
 
 import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
@@ -12,20 +11,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#111827] text-white">
-      <Head>
-        <title>Anime API Platform - La API de Anime para desarrolladores</title>
-        <meta name="description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
-        <meta property="og:title" content="Anime API Platform - La API de Anime para desarrolladores" />
-        <meta property="og:description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
-        <meta property="og:image" content="/og-image.png" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Anime API Platform - La API de Anime para desarrolladores" />
-        <meta name="twitter:description" content="Accede a miles de datos de anime, OVAs y películas con la API más fácil y potente para bots, apps y proyectos otaku. ¡Consigue tu API Key gratis!" />
-        <meta name="twitter:image" content="/og-image.png" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       {/* Header */}
       <header className="flex justify-between items-center px-8 py-5 max-w-[1200px] w-full mx-auto">
         <div className="flex items-center gap-3">

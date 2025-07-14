@@ -1,6 +1,14 @@
 {
+  "/api/user/route": "app/api/user/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/dragonball/characters/route": "app/api/dragonball/characters/route.js",
+  "/api/keys/route": "app/api/keys/route.js",
   "/page": "app/page.js",
   "/(routes)/dashboard/page": "app/(routes)/dashboard/page.js",
+  "/(routes)/search/page": "app/(routes)/search/page.js",
+  "/(routes)/settings/page": "app/(routes)/settings/page.js",
+  "/(routes)/snippets/page": "app/(routes)/snippets/page.js",
+  "/(routes)/docs/page": "app/(routes)/docs/page.js",
   "/(routes)/dragonball/page": "app/(routes)/dragonball/page.js"
 }

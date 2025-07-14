@@ -46,10 +46,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/dragonball/characters/route.js"
     ],
-    "/api/dragonball/transformations/route": [
+    "/(routes)/search/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/dragonball/transformations/route.js"
+      "static/chunks/app/(routes)/search/page.js"
+    ],
+    "/(routes)/snippets/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/snippets/page.js"
+    ],
+    "/(routes)/docs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/docs/page.js"
+    ],
+    "/(routes)/settings/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(routes)/settings/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

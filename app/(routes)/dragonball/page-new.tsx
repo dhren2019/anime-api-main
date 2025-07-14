@@ -15,7 +15,7 @@ export default async function DragonBallPage() {
     name: char.name,
     image: char.image || '',
     ki: char.ki || '',
-    maxKi: char.maxki || '', // mapear maxki -> maxKi
+    maxki: char.maxki || '', // mapear maxki -> maxki
     race: char.race || '',
     gender: char.gender || '',
     affiliation: char.affiliation || '',

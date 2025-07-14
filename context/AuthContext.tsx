@@ -1,8 +1,8 @@
-import { User } from "@clerk/nextjs/server";
+import { UserResource } from "@clerk/types";
 import { createContext } from "react";
 
 interface AuthContextType {
-    user: User | null;
+    user: UserResource | null;
     isLoaded: boolean;
     error: string | null;
 }

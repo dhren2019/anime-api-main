@@ -27,7 +27,14 @@ export function ApiKeyDocs() {
             Generar Clave API
           </Button>
 
-          <ApiKeyDialog open={showDialog} onOpenChange={setShowDialog} />
+          <ApiKeyDialog 
+            isOpen={showDialog} 
+            onClose={() => setShowDialog(false)}
+            onConfirm={(name: string) => {
+              console.log('API Key creada:', name);
+              setShowDialog(false);
+            }}
+          />
         </Card>
 
         <Card className="p-6 bg-gray-800 border-0">
